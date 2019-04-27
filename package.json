@@ -1,0 +1,89 @@
+{
+  "name": "@dbklab/salaryguidereloaded",
+  "version": "1.0.0",
+  "description": "Every year, The Diamondback publishes Salary Guide, which contains the salaries of University employees in an easily digestible format. The current templatewas created in 2017, and was also reused for the 2018 edition of Salary Guide. This year, our goal is to revamp the design and features of the site, most notably adding a filter option to the site that'll allow the user to view previous salary data without navigating to a different site.",
+  "scripts": {
+    "preinstall": "rm -rf node_modules",
+    "dev": "NODE_ENV=development && preact watch --template ./src/index.html",
+    "test": "NODE_ENV=test && jest --detectOpenHandles --passWithNoTests",
+    "build": "NODE_ENV=production && preact build --no-prerender --template ./src/index.html --clean -p",
+    "stage": "npm test && npm run build",
+    "serve": "npm run stage && preact serve --server=simplehttp2server",
+    "start": "npm run serve"
+  },
+  "dependencies": {
+    "@feathersjs/errors": "^3.3.6",
+    "install": "^0.12.2",
+    "now": "^15.0.8",
+    "npm": "^6.9.0",
+    "preact": "10.0.0-alpha.3",
+    "preact-cli-plugin-env-vars": "^1.2.1",
+    "preact-router": "3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.2.0",
+    "babel-eslint": "^11.0.0-beta.0",
+    "babel-jest": "^24.7.1",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-standard-preact": "^1.1.6",
+    "eslint-config-synacor": "^2.0.2",
+    "eslint-plugin-import": "^2.17.1",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^21.2.1",
+    "node-sass": "4.11.0",
+    "preact-cli": "3.0.0-next.19",
+    "preact-render-spy": "^1.2.1",
+    "sass-loader": "7.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/The-Diamondback-Lab/salaryguidereloaded.git"
+  },
+  "keywords": [
+    "preact",
+    "salary guide",
+    "the diamondback",
+    "dbk",
+    "umd",
+    "maryland"
+  ],
+  "author": "Lexus Drumgold <lex@lexusdrumgold.design> (https://lexusdrumgold.design/workspace)",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://gitlab.com/The-Diamondback-Lab/salaryguidereloaded/issues"
+  },
+  "homepage": "https://gitlab.com/The-Diamondback-Lab/salaryguidereloaded#readme",
+  "browserslist": [
+    ">1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "not ie < 11"
+  ],
+  "eslintConfig": {
+    "extends": [
+      "standard",
+      "standard-preact"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module"
+    },
+    "rules": {
+      "camelcase": 0,
+      "space-before-function-paren": 0
+    }
+  },
+  "eslintIgnore": [
+    "build/*"
+  ]
+}
