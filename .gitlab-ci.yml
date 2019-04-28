@@ -6,7 +6,7 @@ cache:
 
 stages:
   - setup
-  # - test
+  - test
   - staging
   - production
 
@@ -15,9 +15,9 @@ setup:
   script: 
     - npm install now
 
-# test:
-#   stage: test
-#   script: npm test
+test:
+  stage: test
+  script: npm test
 
 staging:
   stage: staging

@@ -4,16 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="On Saturday, Sept. 30, 2017, University of
-    Maryland freshman Maria Fisher went to Cornerstone Grill and Loft for a
-    night out with her friends. It would be her last. Shortly after 6 a.m. on
-    Sunday morning, she was struck and killed by a car as she crossed Route 1.
-    More than a year later, what happened during Maria’s final hours is still
-    mostly a mystery. Her phone calls and text messages gave the impression that
-    she was in distress, but her friends and family still don’t know where she
-    went that night, or why she was running across the road the next morning.
-    Even as they try to move on, the uncertainty has made it difficult for her
-    loved ones to find closure.">
+  <meta name="description"
+    content="At The Diamondback, we’ve pledged to hold the University of Maryland accountable in our coverage. Our annual salary guide adheres to that mission, laying out each university employee’s yearly pay in an easily digestible format. Here, you can find charts searchable by salary, department, title and other information.">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicons/apple-icon-60x60.png">
@@ -46,9 +38,6 @@
 <!-- Content will be populated by Preact -->
 
 <body>
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
-
   <!-- Preact CLI / webpack -->
   <%= htmlWebpackPlugin.options.ssr() %>
   <% if (webpack.assets.filter(entry => entry.name.match(/bundle(\.\w{5})?.esm.js$/)).length > 0) { %>
