@@ -1,0 +1,20 @@
+////
+/// Global sass functions.
+/// @group sgr-functions
+/// @author Lexus Drumgold
+////
+
+/// Get an asset from the assets folder.
+/// @param {string} $filename - name of asset file with extension
+/// @param {string} $type [image] - type of asset. i.e: image, font
+@function asset($filename, $type: image)
+  @return '#{$base-url}#{$type}s/#{$filename}'
+
+/// Convert pixels to ems
+/// @param {number | string} $px - pixels to convert
+/// @return {string}
+@function size($px)
+  @if unitless($px)
+    $px: $px * 1px
+
+  @return #{$px / 16px}em

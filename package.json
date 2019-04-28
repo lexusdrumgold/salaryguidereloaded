@@ -5,10 +5,10 @@
   "scripts": {
     "preinstall": "rm -rf node_modules",
     "dev": "NODE_ENV=development && preact watch --template ./src/index.html",
-    "test": "NODE_ENV=test && jest --detectOpenHandles --passWithNoTests",
+    "test": "NODE_ENV=test",
     "build": "NODE_ENV=production && preact build --no-prerender --template ./src/index.html --clean -p",
     "stage": "npm test && npm run build",
-    "serve": "npm run stage && preact serve --server=simplehttp2server",
+    "serve": "npm run stage && serve ./build",
     "start": "npm run serve"
   },
   "dependencies": {
@@ -18,7 +18,8 @@
     "npm": "^6.9.0",
     "preact": "10.0.0-alpha.3",
     "preact-cli-plugin-env-vars": "^1.2.1",
-    "preact-router": "3.0.0"
+    "preact-router": "3.0.0",
+    "serve": "^11.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",

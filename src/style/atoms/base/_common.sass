@@ -1,0 +1,60 @@
+////
+/// Common styles
+/// @group sgr-common
+////
+
+*
+  +transition
+
+*,
+html
+  box-sizing: border-box
+
+\::-webkit-scrollbar
+  display: none
+
+html
+  overflow-x: hidden
+
+body
+  background-color: $light
+  color: $dark
+  font-family: $text-font-stack
+  margin: 0 !important
+  overflow: hidden
+
+h1, h2, h3, h4, h5, h6
+  font-weight: 700
+
+a,
+button
+  +hocus
+    cursor: pointer
+    font-weight: 700
+
+a
+  text-decoration: none
+
+  &.active
+    font-weight: 700
+
+ul
+  margin: 0
+  padding: 0
+
+li
+  list-style: none
+
+button
+  background-color: transparent
+  border: none
+  font-family: $text-font-stack
+  outline: none
+  padding: 0
+
+input
+  background-color: transparent
+  border: none
+  font-size: px-to-em(16)
+  outline: none
+  padding: 0

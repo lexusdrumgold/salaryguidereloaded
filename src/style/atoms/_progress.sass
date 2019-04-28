@@ -1,0 +1,26 @@
+////
+/// components/atoms/Progress.jsx styles
+/// @author Lexus Drumgold
+////
+
+.ada-progress,
+.progress-value
+  height: size(2.5)
+  display: inline-block
+  position: absolute
+
+  &.ui-hide
+    height: 0
+    opacity: 0
+    width: 0
+
+.ada-progress
+  left: 0
+  top: 0
+  width: 100vw
+
+.progress-value
+  +transition(all, 0.375s, linear)
+
+  background-color: $accent-med
+  border-radius: size(20)
