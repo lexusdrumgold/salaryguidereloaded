@@ -14,7 +14,10 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/index.html",
+      "headers": {
+        "Content-Type": "text/html"
+      }
     },
     {
       "src": "/assets/(.*)",
