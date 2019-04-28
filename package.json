@@ -8,6 +8,7 @@
     "dev": "NODE_ENV=development && preact watch --template ./src/index.html",
     "test": "NODE_ENV=test",
     "build": "NODE_ENV=production && preact build --no-prerender --template ./src/index.html --clean -p",
+    "now-build": "npm run build",
     "stage": "npm test && npm run build",
     "serve": "npm run stage && serve ./build",
     "start": "npm run serve"
