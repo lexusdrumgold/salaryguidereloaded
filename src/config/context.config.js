@@ -25,6 +25,9 @@ const InitialAsyncState = { data: null, progress: 0 }
 const InitialUIState = { menu_open: false, mobile: false }
 
 const AsyncContext = createContext(InitialAsyncState)
+const AsyncTableContext = createContext(InitialAsyncState)
 const UIContext = createContext(InitialUIState)
 
-export { AsyncContext, UIContext, InitialAsyncState, InitialUIState }
+export {
+  AsyncContext, AsyncTableContext, InitialAsyncState, InitialUIState, UIContext
+}

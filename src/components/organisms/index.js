@@ -4,8 +4,10 @@
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 
+import Footer from './Footer.jsx'
+import Guide from './Guide.jsx'
 import Header from './Header.jsx'
 import Hero from './Hero.jsx'
-import Footer from './Footer.jsx'
+import Table from './Table.jsx'
 
-export { Header, Hero, Footer }
+export { Footer, Guide, Header, Hero, Table }

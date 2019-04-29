@@ -4,13 +4,6 @@
   "public": true,
   "builds": [
     {
-      "src": "preact/package.json",
-      "use": "@now/static-build",
-      "config": {
-        "distDir": "build"
-      }
-    },
-    {
       "src": "package.json",
       "use": "@now/static-build",
       "config": {

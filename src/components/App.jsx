@@ -1,12 +1,12 @@
 // Packages
-import { h, Component } from 'preact'
+import { h, Component, Fragment } from 'preact'
 
 // Configuration
 import { AsyncContext } from '../config/context.config.js'
 
 // Components
 import { Progress } from './atoms'
-import { Header, Hero, Footer } from './organisms'
+import { Guide, Header, Hero, Footer } from './organisms'
 
 // Style
 import '../style/app.sass'
@@ -66,14 +66,15 @@ export default class App extends Component {
    */
   render(props, state) {
     return (
-      <AsyncContext.Provider value={state}>
-        <Progress />
+      <Fragment>
+        <AsyncContext.Provider value={state}>
+          <Progress />
+        </AsyncContext.Provider>
         <Header />
         <Hero />
+        <Guide />
         <Footer />
-
-        {/* TODO: Add Hero, Table, and Footer components */}
-      </AsyncContext.Provider>
+      </Fragment>
     )
   }
 
@@ -103,15 +104,4 @@ export default class App extends Component {
       clearInterval(this.progress)
     }
   }
-
-  /**
-   * Gets fired when the route changes.
-   * Updates the application's current_url member.
-   *
-   * @param {Object} event - 'Change' event from preact-router
-   * @param {string} event.url - The newly routed URL
-   * @see {@link http://git.io/preact-router}
-   * @throws {NotFound}
-   */
-  routing = event => (this.current_url = event.url)
 }

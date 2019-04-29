@@ -1,35 +1,46 @@
+// Mocks
+import * as RequestMock from './__mocks__/Request.mock.json'
+import * as ResponseMock from './__mocks__/Response.mock.json'
+
+// Utility functions
+import { request } from '../src/utilities/global.utilities'
+
 /**
  * @file API connection unit tests
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 
-describe('API responses', () => {
-  it('Resolves successfully when retreiving a a year.', async () => {
-    console.warn('Response to ...')
+// Tests default call to the API
+describe('https://api.dbknews.com/salary', () => {
+  it('Returns the first page of results.', async () => {
+    console.warn('Requesting /year/2019?sortby=salary&order=desc&page=1')
 
     try {
-      const { register_user } = UserController
-      const { create_profile } = AccountController
+      const { default_config } = RequestMock
+      const { default_resp } = ResponseMock
 
-      // Mock account registration and profile creation
-      let register = await register_user(UserMocks.valid)
-      await create_profile(register.uid, AccountMocks.valid)
+      const req = await request(default_config)
 
-      // Check that data was properly handled
-      expect(register.uid).toBe(UserMocks.valid.uid)
-
-      let user = await AccountController.get_user_account(register.uid)
-
-      // Check that we can get a user, and data has persisted
-      expect(user.uid).toBe(UserMocks.valid.uid)
-      expect(user.customClaims.gender).toBe(AccountMocks.valid.gender)
-      expect(user.customClaims.age).toBe(21)
-
-      // Check that we can remove a user
-      let removed = await AccountController.remove_account(user.uid)
-      expect(removed).toBe(true)
+      expect(req.status).toBe(200)
+      expect(req.data).toEqual(expect.arrayContaining(default_resp))
     } catch (err) {
-      console.error('Error testing user registration function.\n', err)
+      console.error('Error testing API call ->', err.message)
+    }
+  })
+
+  it('Returns the second page of results.', async () => {
+    console.warn('Requesting /year/2019?sortby=salary&order=desc&page=2')
+
+    try {
+      const { default_config_2 } = RequestMock
+      const { default_resp_2 } = ResponseMock
+
+      const req = await request(default_config_2)
+
+      expect(req.status).toBe(200)
+      expect(req.data).toEqual(expect.arrayContaining(default_resp_2))
+    } catch (err) {
+      console.error('Error testing API call ->', err.message)
     }
   })
 })

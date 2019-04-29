@@ -11,7 +11,10 @@ import Link from './Link.jsx'
 import Paragraph from './Paragraph.jsx'
 import Progress from './Progress.jsx'
 import Redirect from './Redirect.jsx'
+import TableBody from './TableBody.jsx'
+import TableHead from './TableHead.jsx'
+import TableRow from './TableRow.jsx'
 
 export {
-  Button, CloseButton, Heading, Icon, Link, Paragraph, Progress, Redirect
+  Button, CloseButton, Heading, Icon, Link, Paragraph, Progress, Redirect, TableBody, TableHead, TableRow
 }

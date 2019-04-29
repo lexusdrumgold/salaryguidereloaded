@@ -2,12 +2,12 @@
 import { h, Component } from 'preact'
 
 /**
- * @file Preact component representing the link.
+ * @file Preact component representing a link.
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 
 /**
- * Class representing the link.
+ * Class representing a link.
  *
  * @class Link
  * @exports Link
@@ -15,10 +15,10 @@ import { h, Component } from 'preact'
  */
 export default class Link extends Component {
   /**
-   * Renders the hero section.
+   * Renders a link.
    *
-   * @param {object} props - Hero properties
-   * @param {object} state - Hero state
+   * @param {object} props - Component properties
+   * @param {object} state - Component state
    * @returns {HTMLElement} html section element
    */
   render(props, state) {

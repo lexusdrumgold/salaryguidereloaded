@@ -1,0 +1,18 @@
+{
+  "default_config": {
+    "url": "/2019",
+    "params": {
+      "sortby": "salary",
+      "order": "desc",
+      "page": 1
+    }
+  },
+  "default_config_2": {
+    "url": "/2019",
+    "params": {
+      "sortby": "salary",
+      "order": "desc",
+      "page": 2
+    }
+  }
+}
