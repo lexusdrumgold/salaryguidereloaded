@@ -7,10 +7,11 @@
 import Button, { CloseButton } from './Button.jsx'
 import Heading from './Heading.jsx'
 import Icon from './Icon.jsx'
+import Link from './Link.jsx'
 import Paragraph from './Paragraph.jsx'
 import Progress from './Progress.jsx'
 import Redirect from './Redirect.jsx'
 
 export {
-  Button, CloseButton, Heading, Icon, Paragraph, Progress, Redirect
+  Button, CloseButton, Heading, Icon, Link, Paragraph, Progress, Redirect
 }

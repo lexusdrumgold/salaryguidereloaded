@@ -4,3 +4,43 @@
 ////
 
 .ado-footer
+  > .ada-container
+    +flex(row, center, space-between)
+    +respond-to($breakpoint-schmedium)
+      +flex(column, flex-start, space-between)
+
+
+    border-top: size(1) solid $light-grey
+    height: 100%
+    padding: size(80) 0
+
+    > .ada-paragraph
+      +respond-to($breakpoint-xxlarge, min)
+        font-size: size(18)
+
+
+      +respond-to($breakpoint-schmedium)
+        width: 100%
+
+
+      font-size: size(16)
+      font-weight: 300
+      margin: 0
+      width: 58.333%
+
+.footer-col
+  +respond-to($breakpoint-schmedium)
+    margin-bottom: size(32)
+    width: 100%
+
+
+  width: 41.667%
+
+  > .ada-heading
+    margin: 0
+
+    &:last-of-type
+      color: $accent-med
+
+  > .adm-footer-navigation
+    margin-top: -1.25em

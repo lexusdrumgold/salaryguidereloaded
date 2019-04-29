@@ -1,6 +1,10 @@
 // Packages
 import { h, Component } from 'preact'
 
+// Components
+import { Heading, Icon, Link, Paragraph } from '../atoms'
+import { SocialNavigation } from '../molecules'
+
 /**
  * @file Preact component representing the hero section.
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
@@ -27,7 +31,13 @@ export default class Hero extends Component {
     return (
       <div class={style}>
         <div class='ada-container'>
-          {/* TODO */}
+          <div className='hero-text'>
+            <Heading heading='The Diamondback' class='ui-text-special' />
+            <Heading heading='Salary Guide' class='ui-text-special' />
+            <Link id='link-explore' href='#explore'>
+              Explore <Icon class='ui-accent-light' name='chevron-down' />
+            </Link>
+          </div>
         </div>
       </div>
     )

@@ -4,6 +4,6 @@
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 
-import Navigation from './Navigation.jsx'
+import { FooterNavigation, SocialNavigation } from './Navigation.jsx'
 
-export { Navigation }
+export { FooterNavigation, SocialNavigation }

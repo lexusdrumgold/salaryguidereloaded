@@ -48,7 +48,7 @@ export default class Progress extends Component {
       <AsyncContext.Consumer>
         {
           ({ progress }) => {
-            if (progress === 100) setTimeout(this.handle_progress, 750)
+            if (progress === 100) setTimeout(this.handle_progress, 1250)
 
             return (
               <div ref={this.progress} class={style}>

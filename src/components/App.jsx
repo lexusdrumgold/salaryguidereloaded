@@ -2,12 +2,11 @@
 import { h, Component } from 'preact'
 
 // Configuration
-import {
-  AsyncContext, UIContext, InitialAsyncState, InitialUIState
-} from '../config/context.config.js'
+import { AsyncContext } from '../config/context.config.js'
 
 // Components
 import { Progress } from './atoms'
+import { Header, Hero, Footer } from './organisms'
 
 // Style
 import '../style/app.sass'
@@ -29,12 +28,10 @@ export default class App extends Component {
    * @namespace state - Application state
    * @property {object | null} data - Async data
    * @property {Error | null} error - Current error
-   * @property {boolean} menu_open - True if menu is open, closed otherwise
-   * @property {boolean} mobile - True if viewport <= 768px
    * @property {number} progress - Loading if value < 100
    * @instance
    */
-  state = { error: null, ...InitialAsyncState, ...InitialUIState }
+  state = { data: null, error: null, progress: 0 }
 
   /**
    * Starts the progress interval and requests the site's CMS data.
@@ -69,12 +66,14 @@ export default class App extends Component {
    */
   render(props, state) {
     return (
-      <UIContext.Provider value={state}>
-        <AsyncContext.Provider value={state}>
-          <Progress />
-          {/* TODO: Add Hero, Table, and Footer components */}
-        </AsyncContext.Provider>
-      </UIContext.Provider>
+      <AsyncContext.Provider value={state}>
+        <Progress />
+        <Header />
+        <Hero />
+        <Footer />
+
+        {/* TODO: Add Hero, Table, and Footer components */}
+      </AsyncContext.Provider>
     )
   }
 
@@ -99,7 +98,7 @@ export default class App extends Component {
    */
   handle_progress_interval = (start = true) => {
     if (start) {
-      this.progress = setInterval(this.handle_loading(start), 0)
+      this.progress = setInterval(this.handle_loading(start), 1100)
     } else {
       clearInterval(this.progress)
     }

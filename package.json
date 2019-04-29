@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@feathersjs/errors": "^3.3.6",
+    "axios": "^0.18.0",
     "install": "^0.12.2",
     "now": "^15.0.8",
     "npm": "^6.9.0",
