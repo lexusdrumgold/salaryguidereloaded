@@ -20,7 +20,11 @@
 
     > .ada-container
       #logo > img
-        width: 65%
+        height: 40px
+        width: auto
+        +respond-to($breakpoint-schmedium)
+          width: auto
+          height: 30px
 
       nav, .ada-link
         font-size: size(14)
@@ -68,7 +72,13 @@
 #logo
   img
     +respond-to($breakpoint-xxlarge, min)
-      width: 100%
+      width: auto
+      height: 40px
+
+    +respond-to($breakpoint-schmedium)
+      width: auto
+      height: 30px
 
 
-    width: 75%
+    height: 40px
+    width: auto

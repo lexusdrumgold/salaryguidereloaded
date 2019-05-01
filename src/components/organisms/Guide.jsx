@@ -104,13 +104,14 @@ export default class Guide extends Component {
               />
             </div>
             <div className='guide-contents'>
+              <p>{`${state.data.count} Results`}</p>
               {
                 state.data.employees.length
                   ? state.data.employees.map(employee =>
                     <Employee {...employee} />
                   )
                   : null
-              }
+              }            
             </div>
           </div>
         </section>
@@ -137,26 +138,28 @@ export default class Guide extends Component {
         page: 1,
         page_limit: Math.ceil(count / 10)
       })
+
+      console.groupEnd()
     } catch (err) {
       console.error('Error getting Salary Guide data ->', err.message)
     }
   }
 
-  // ! FIXME: Supposed to update Guide state, but doesn't seem to do anything
   // Gets passed to the Filter component
   handle_params = (type, value) => {
     console.info('Handling search parameter change:', { type, value })
 
+    type = type.replace(/\s/g, '');
+
     let params_copy = Object.assign({}, this.state.params)
     params_copy[type] = value
 
-    this.setState(state => ({ ...state, params: params_copy }))
+    this.setState(state => ({ ...state, loading: true, params: params_copy }), () => this.get_data())
   }
 
-  // ! FIXME: Supposed to update Guide state, but doesn't seem to do anything
   // Gets passed to the Filter component
   handle_url = url => {
     console.info('Handling url parameter change:', url)
-    this.setState(state => ({ url: url }))
+    this.setState(state => ({ ...state, loading: true, url: url }), () => this.get_data())
   }
 }

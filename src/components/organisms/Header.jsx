@@ -3,7 +3,7 @@ import { h, Component } from 'preact'
 import $ from 'jquery'
 
 // Logo
-import logo from '../../assets/dbk.svg'
+import logo from '../../assets/dbk.png'
 
 // Components
 import { Link, Icon } from '../atoms'
