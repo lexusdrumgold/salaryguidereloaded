@@ -7,16 +7,19 @@
     "preinstall": "rm -rf node_modules",
     "dev": "NODE_ENV=development && preact watch --template ./src/index.html",
     "test": "NODE_ENV=test && jest",
-    "build": "NODE_ENV=production && preact build --no-prerender --template ./src/index.html --clean -p",
+    "build": "NODE_ENV=production && preact build --clean -p --no-prerender --template ./src/index.html && cp now.json build/now.json",
     "now-build": "npm run build",
-    "stage": "npm test && npm run build",
-    "serve": "npm run stage && serve ./build",
-    "start": "npm run serve"
+    "stage": "clear && npm test && npm run build",
+    "serve-staging": "clear && npm run build && cd build && now-we-test serve --port=5000",
+    "serve": "clear && npm run stage && serve ./build",
+    "start": "clear && npm run serve"
   },
   "dependencies": {
     "@feathersjs/errors": "^3.3.6",
     "axios": "^0.18.0",
+    "feather-icons": "^4.21.0",
     "install": "^0.12.2",
+    "jquery": "^3.4.0",
     "now": "^15.0.8",
     "npm": "^6.9.0",
     "preact": "10.0.0-alpha.3",

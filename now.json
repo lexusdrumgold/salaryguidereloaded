@@ -5,7 +5,7 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@now/static-build",
+      "use": "@now/static",
       "config": {
         "distDir": "build"
       }
@@ -13,18 +13,32 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "/index.html",
-      "headers": {
-        "Content-Type": "text/html"
-      }
+      "src": "/favicon.ico",
+      "dest": "/favicon.ico"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/manifest.json"
+    },
+    {
+      "src": "/(.*).css",
+      "dest": "/$1.css"
+    },
+    {
+      "src": "/(.*).js",
+      "dest": "/$1.js"
+    },
+    {
+      "src": "/(.*).esm.js",
+      "dest": "/$1.esm.js"
     },
     {
       "src": "/assets/(.*)",
-      "headers": {
-        "cache-control": "s-maxage=31536000,immutable"
-      },
       "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }

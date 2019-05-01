@@ -57,3 +57,27 @@ export class CloseButton extends Component {
     )
   }
 }
+
+/**
+ * Preact component representing a filter button.
+ *
+ * @class FilterButton
+ * @exports FilterButton
+ * @extends preact.Component
+ */
+export class FilterButton extends Component {
+  /**
+   * Renders a filter button.
+   *
+   * @param {object} props - Component properties
+   * @param {object} state - Component state
+   * @returns {HTMLButtonElement}
+   */
+  render(props, state) {
+    return (
+      <Button id='btn-filter' class={props.class} onClick={props.onClick}>
+        <Icon name='filter' />
+      </Button>
+    )
+  }
+}

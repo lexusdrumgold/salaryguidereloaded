@@ -8,20 +8,38 @@
     padding: size(64) 0
 
 
-  padding: size(48) 0
+  padding: size(40) 0
   position: absolute
   width: 100vw
   z-index: 5
+
+  &.ui-sticky
+    background-color: $accent-med
+    padding: size(14) 0
+    position: fixed
+
+    > .ada-container
+      #logo > img
+        width: 65%
+
+      nav, .ada-link
+        font-size: size(14)
 
   > .ada-container
     +flex(row, center, space-between)
 
     nav
+      +flex(row, center, space-between)
+
       color: $light
 
       .ada-link
         +hocus
           font-weight: 600
+
+          &:last-of-type
+            > .ada-icon
+              stroke-width: size(3.5)
 
 
         +respond-to($breakpoint-xxlarge, min)
@@ -36,6 +54,16 @@
         font-weight: 300
         font-size: size(14)
         text-transform: uppercase
+
+        &:last-of-type
+          +flex(row, center, center)
+
+          > i
+            display: none
+
+          > .ada-icon
+            margin-left: size(7.5)
+            width: size(22.5)
 
 #logo
   img

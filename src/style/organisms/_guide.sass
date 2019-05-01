@@ -8,15 +8,25 @@
 
   padding: size(60) 0
 
-  > .ada-container
-    > .ado-table
-      width: 75%
+.guide-header,
+.guide-contents
+  +respond-to($breakpoint-schmedium)
+    width: 100%
 
-      .ada-thead
-        .ada-paragraph
-          +respond-to($breakpoint-xxlarge, 18)
 
-          font-size: size(16)
+  // If ads, change width below to 80%
+  width: 100%
 
-          span
-            font-weight: 600
+.guide-header
+  > .ada-paragraph
+    +respond-to($breakpoint-xxlarge, min)
+
+    font-size: size(16)
+    font-weight: 300
+    margin-bottom: size(30)
+
+    span
+      font-weight: 600
+
+.guide-contents
+  padding: size(18) 0

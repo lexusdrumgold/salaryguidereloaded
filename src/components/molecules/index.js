@@ -4,6 +4,8 @@
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 
+import Loading from './Loading.jsx'
 import { FooterNavigation, SocialNavigation } from './Navigation.jsx'
+import Searchbar from './Searchbar.jsx'
 
-export { FooterNavigation, SocialNavigation }
+export { FooterNavigation, Loading, Searchbar, SocialNavigation }

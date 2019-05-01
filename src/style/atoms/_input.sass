@@ -1,0 +1,30 @@
+////
+/// components/atoms/Input.jsx styles
+/// @author Lexus Drumgold
+////
+
+.ada-input
+  +flex(row, center)
+
+  > input
+    +hocus
+      +respond-to($breakpoint-xxlarge, min)
+        font-size: size(26)
+
+
+      color: $accent-med
+      font-family: $text-font-stack
+      font-size: size(19.5)
+      font-weight: 600
+
+
+    padding: size(24) size(10)
+    width: 97.5%
+
+    &::placeholder
+      +respond-to($breakpoint-xxlarge, min)
+        font-size: size(26)
+
+
+      font-family: $text-font-stack
+      font-size: size(20)

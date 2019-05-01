@@ -19,8 +19,7 @@ import { BadRequest } from '@feathersjs/errors'
  */
 export const request = async config => {
   try {
-    const base = 'https://api.dbknews.com/salary/year'
-    const Axios = axios.create({ baseURL: base })
+    const Axios = axios.create({ baseURL: 'https://api.dbknews.com/salary' })
 
     const { data, status, statusText } = await Axios(config)
 

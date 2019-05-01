@@ -1,9 +1,6 @@
 // Packages
 import { h, Component } from 'preact'
 
-// Configuration
-import { AsyncTableContext } from '../../config/context.config'
-
 /**
  * @file Preact component representing a table body.
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
@@ -25,19 +22,9 @@ export default class TableBody extends Component {
    * @returns {HTMLElement} html section element
    */
   render(props, state) {
-    let style = (`ada-tbody ${props.class ? props.class : ''}`).trim()
-
     return (
-      <tbody class={style}>
-        <AsyncTableContext.Consumer>
-          {
-            ({ loading }) => {
-              if (loading) return null
-
-              return props.children
-            }
-          }
-        </AsyncTableContext.Consumer>
+      <tbody class={(`ada-tbody ${props.class ? props.class : ''}`).trim()}>
+        {props.children}
       </tbody>
     )
   }

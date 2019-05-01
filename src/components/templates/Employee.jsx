@@ -31,16 +31,20 @@ export default class Employee extends Component {
 
     return (
       <div class={style}>
-        <div className='ada-container'>
-          <div className='employee-overview'>
-            <Paragraph class='employee-name' paragraph={name} />
+        <div class='ada-container'>
+          <div class='employee-overview'>
+            <Paragraph class='employee-name'>
+              {name}
+            </Paragraph>
             <ul class='employee-details'>
               <li class='employee-detail employee-department'>{department}</li>
               <li class='employee-detail employee-division'>{division}</li>
               <li class='employee-detail employee-title'>{title}</li>
             </ul>
           </div>
-          <Paragraph class='employee-salary' paragraph={salary} />
+          <Paragraph class='employee-salary'>
+            {salary}
+          </Paragraph>
         </div>
       </div>
     )
