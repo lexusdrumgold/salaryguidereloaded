@@ -89,30 +89,16 @@ export default class Guide extends Component {
                 <br /><br />
                 Get started by filtering by <span>salary, job title, department, and more.</span>
               </Paragraph>
-
+              <div id='explore'></div>
+              <br />
+              <br />
+              <br />
               <Filter
                 guide={state}
                 handle_params={this.handle_params}
                 handle_url={this.handle_url}
               />
-            </div>
-            {
-              state.loading
-                ? <Loading />
-                : (
-                  <div class='guide-contents' id='explore'>
-                    <p>{`${state.data.count} Results`}</p>
-                    {
-                      state.data.employees.length
-                        ? state.data.employees.map(employee =>
-                          <Employee {...employee} />
-                        )
-                        : null
-                    }
-                  </div>
-                )
-            }
-            {
+              {
               state.page_limit
                 ? (
                   <div className='guide-pagination'>
@@ -137,6 +123,23 @@ export default class Guide extends Component {
                   </div>
                 )
                 : null
+            }
+            </div>
+            {
+              state.loading
+                ? <Loading />
+                : (
+                  <div class='guide-contents'>
+                    <p>{`${state.data.count} Results`}</p>
+                    {
+                      state.data.employees.length
+                        ? state.data.employees.map(employee =>
+                          <Employee {...employee} />
+                        )
+                        : null
+                    }
+                  </div>
+                )
             }
           </div>
         </section>
@@ -181,6 +184,9 @@ export default class Guide extends Component {
   }
 
   handle_button = (type = 'next') => {
+    if (this.state.loading) {
+      return
+    }
     const { page_limit, params } = this.state
 
     let key
@@ -203,15 +209,21 @@ export default class Guide extends Component {
    * @returns {undefined}
    */
   handle_params = (type, value) => {
+    if (this.state.loading) {
+      return
+    }
     console.info('Handling search parameter change:', { type, value })
 
     type = type.replace(/\s/g, '')
 
     let params_copy = Object.assign({}, this.state.params)
     params_copy[type] = value
+    if (type !== 'page') {
+      params_copy['page'] = '1'
+    }
 
     this.setState(
-      state => ({ ...state, loading: true, params: params_copy }),
+      state => ({ ...state, params: params_copy }),
       () => this.get_data()
     )
   }
@@ -225,7 +237,7 @@ export default class Guide extends Component {
   handle_url = url => {
     console.info('Handling url parameter change:', url)
     this.setState(
-      state => ({ ...state, loading: true, url: url }),
+      state => ({ ...state, url: url }),
       () => this.get_data()
     )
   }

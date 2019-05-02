@@ -5,69 +5,16 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@now/static",
-      "config": {
-        "distDir": "./build"
-      }
-    },
-    {
-      "src": "package-lock.json",
-      "use": "@now/static",
-      "config": {
-        "distDir": "./build"
-      }
-    },
-    {
-      "src": "build/*.(html|css|json|ico|ttf)",
-      "use": "@now/static",
-      "config": {
-        "distDir": "./build"
-      }
-    },
-    {
-      "src": "build/assets/**/*.(png|svg|ttf)",
-      "use": "@now/static",
-      "config": {
-        "distDir": "./build/assets"
-      }
-    },
-    {
-      "src": "build/*.js",
-      "use": "@now/node",
-      "config": {
-        "distDir": "./build"
-      }
+      "use": "@now/static-build",
+      "config": { "distDir": "build" }
     }
-  ],
-  "files": [
-    "./build"
   ],
   "routes": [
-    {
-      "src": "./assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "./sw-esm.js",
-      "headers": {
-        "cache-control": "Immutable"
-      },
-      "dest": "/$1"
-    },
-    {
-      "src": "./(.*)\\.(.*)\\.(js|css|json|ico|ttf)$",
-      "headers": {
-        "cache-control": "Immutable"
-      },
-      "dest": "/$1.$2.$3"
-    },
-    {
-      "src": "./(.*)\\.(js|css|json|ico|ttf)$",
-      "dest": "/$1.$2"
-    },
-    {
-      "src": "./(.*)",
-      "dest": "/index.html"
-    }
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/(.*)\\.(.*)\\.(.*)\\.(.*)\\.(js|css|json|ttf|map)$", "dest": "/$1.$2.$3.$4.$5" },
+    { "src": "/(.*)\\.(.*)\\.(.*)\\.(js|css|json|ttf|map)$", "dest": "/$1.$2.$3.$4" },
+    { "src": "/(.*)\\.(.*)\\.(js|css|json|ttf|map)$", "dest": "/$1.$2.$3" },
+    { "src": "/(.*)\\.(js|css|json|ttf|map|png|ico|json)$", "dest": "/$1.$2" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
