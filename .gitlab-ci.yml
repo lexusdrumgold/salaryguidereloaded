@@ -6,7 +6,7 @@ cache:
 
 stages:
   - setup
-  - test
+  # - test
   - staging
   - production
 
@@ -16,9 +16,9 @@ setup:
     - npm install preact-cli@latest
     - npm install now
 
-test:
-  stage: test
-  script: npm test
+# test:
+#   stage: test
+#   script: npm test
 
 staging:
   stage: staging
