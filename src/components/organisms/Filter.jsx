@@ -1,13 +1,13 @@
 // Packages
-import { h, Component } from 'preact'
+import { h, Component, Fragment } from 'preact'
 import $ from 'jquery'
 
 // Configuration
 import { FilterFormConfig } from '../../config/constants.config'
 
 // Components
-import { Fieldset, Label, Legend } from '../atoms'
-import { Searchbar } from '../molecules'
+import { Fieldset, Label, Legend, Paragraph } from '../atoms'
+import { Pagination, Searchbar } from '../molecules'
 
 // Utilities
 import { request } from '../../utilities/global.utilities'
@@ -60,6 +60,10 @@ export default class Filter extends Component {
     }
   }
 
+  // shouldComponentUpdate(props, state) {
+  //   return this.props.count !== props.count
+  // }
+
   /**
    * Component cleanup.
    */
@@ -78,11 +82,14 @@ export default class Filter extends Component {
    */
   render(props, state) {
     const style = (`ado-filter ${props.class ? props.class : ''}`).trim()
+    const {
+      count, current_page, handle_button, handle_params, handle_url, page_limit
+    } = props
 
     return (
       <div class={style}>
         <div class='ada-container'>
-          <Searchbar onChange={e => props.handle_params('search', e.target.value)} />
+          <Searchbar onChange={e => handle_params('search', e.target.value)} />
           <Legend legend='Filter' />
           <Fieldset>
             {
@@ -97,8 +104,8 @@ export default class Filter extends Component {
                         label={label}
                         onChange={
                           i === 0
-                            ? e => props.handle_url(e.target.value)
-                            : e => props.handle_params(label, e.target.value)
+                            ? e => handle_url(e.target.value)
+                            : e => handle_params(label, e.target.value)
                         }>
                         {options.map(option => (
                           <option
@@ -111,7 +118,27 @@ export default class Filter extends Component {
                 })
                 : null
             }
+            <div className='filter-pages'>
+              {
+                count
+                  ? (
+                    <Fragment>
+                      <Paragraph>
+                        {count}&nbsp;results
+                      </Paragraph>
+                      <Pagination
+                        current_page={current_page}
+                        page_limit={page_limit}
+                        handle_button={handle_button}
+                      />
+                    </Fragment>
+                  )
+                  : null
+              }
+
+            </div>
           </Fieldset>
+
         </div>
       </div>
     )

@@ -7,6 +7,7 @@ import logo from '../../assets/dbk.png'
 
 // Components
 import { Link } from '../atoms'
+import { HeaderNavigation } from '../molecules'
 
 /**
  * @file Preact component representing the header.
@@ -49,27 +50,27 @@ export default class Header extends Component {
     return (
       <header class={(`ado-header ${props.class ? props.class : ''}`).trim()}>
         <div className='ada-container'>
-          <Link id='logo' href='#' onClick={e => this.handle_link('body', e)}>
+          <Link id='logo' onClick={e => this.handle_link('body', e)}>
             <img src={logo} alt='DBK Logo' />
           </Link>
 
-          <nav>
-            <Link href='#about' onClick={e => this.handle_link('#about', e)}>
-              About
-            </Link>
-            &nbsp; | &nbsp;
-            <Link href='#guide' onClick={e => this.handle_link('#guide', e)}>
-              Explore
-            </Link>
-          </nav>
+          <HeaderNavigation onClick={this.handle_link} />
         </div>
       </header>
     )
   }
 
   // Helpers
+
+  /**
+   * Smooth scrolls to an element.
+   *
+   * @param {string} selector - Element selector string
+   * @param {event} Event - onClick event
+   * @returns {undefined}
+   */
   handle_link = (selector, event) => {
-    $('html, body').animate({ scrollTop: $(selector).offset().top - 50 }, 1250)
+    $('html, body').animate({ scrollTop: $(selector).offset().top - 50 }, 1000)
     $('.ado-filter').removeClass('ui-sticky').css({ top: 0 })
 
     event.preventDefault()

@@ -2,17 +2,24 @@
 import { h, Component } from 'preact'
 
 /**
- * @file Preact component representing a loading component.
+ * @file Preact component representing the loading view.
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 
+/**
+ * Preact component representing the loading view.
+ *
+ * @class Loading
+ * @exports Loading
+ * @extends Component
+ */
 export default class Loading extends Component {
   /**
-   * Renders a loading component.
+   * Renders the loading view.
    *
    * @param {object} props - Component properties
    * @param {object} state - Component state
-   * @returns {HTMLDivElement} HTML div representing a loading component
+   * @returns {HTMLDivElement} HTML div representing the loading view.
    */
   render(props, state, context) {
     let style = (`adm-loading ${props.class ? props.class : ''}`).trim()

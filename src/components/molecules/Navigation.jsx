@@ -1,5 +1,6 @@
 // Packages
 import { h, Component, Fragment } from 'preact'
+import $ from 'jquery'
 
 // Components
 import { Icon, Link } from '../atoms'
@@ -7,6 +8,79 @@ import { Icon, Link } from '../atoms'
 /**
  * @file Preact component representing the footer navigation.
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
+ */
+
+/**
+ * Preact component representing the header navigation.
+ *
+ * @class HeaderNavigation
+ * @exports HeaderNavigation
+ * @extends Component
+ */
+export class HeaderNavigation extends Component {
+  state = {
+    links: [
+      {
+        href: '#about',
+        text: 'About'
+      },
+      {
+        href: '#guide',
+        text: 'Explore'
+      }
+    ]
+  }
+
+  /**
+   * Renders the header navigation.
+   *
+   * @param {object} props - Component properties
+   * @param {object} state - Component state
+   * @returns {HTMLElement} html navigation element
+   */
+  render(props, state, context) {
+    return (
+      <nav class='adm-header-navigation'>
+        {state.links.map((link, i) => {
+          const { href } = link
+          if (i === 1) {
+            return <Link {...link} onClick={e => props.onClick(href, e)} />
+          }
+
+          return (
+            <Fragment>
+              <Link {...link} onClick={e => props.onClick(href, e)} />
+              &nbsp;|&nbsp;
+            </Fragment>
+          )
+        })}
+      </nav>
+    )
+  }
+
+  // Helpers
+
+  /**
+   * Smooth scrolls to an element.
+   *
+   * @param {string} selector - Element selector string
+   * @param {event} Event - onClick event
+   * @returns {undefined}
+   */
+  handle_link = (selector, event) => {
+    $('html, body').animate({ scrollTop: $(selector).offset().top - 50 }, 1250)
+    $('.ado-filter').removeClass('ui-sticky').css({ top: 0 })
+
+    event.preventDefault()
+  }
+}
+
+/**
+ * Preact component representing the footer navigation.
+ *
+ * @class FooterNavigation
+ * @exports FooterNavigation
+ * @extends Component
  */
 export class FooterNavigation extends Component {
   state = {
@@ -37,11 +111,8 @@ export class FooterNavigation extends Component {
    * @returns {HTMLElement} html navigation element
    */
   render(props, state, context) {
-    let style = 'adm-footer-navigation'
-    style = (`${style} ${props.class ? props.class : ''}`).trim()
-
     return (
-      <nav class={style}>
+      <nav class='adm-footer-navigation'>
         {state.links.map((link, i) => {
           if (i === state.links.length - 1) return <Link {...link} />
 
@@ -61,7 +132,7 @@ export class FooterNavigation extends Component {
  *
  * @class Navigation
  * @exports Navigation
- * @extends preact.Component
+ * @extends Component
  */
 export class SocialNavigation extends Component {
   /**
