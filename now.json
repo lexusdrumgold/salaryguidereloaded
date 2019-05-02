@@ -7,9 +7,9 @@
       "src": "package.json",
       "use": "@now/static",
       "config": {
-        "distDir": "build",
+        "distDir": "./build",
         "files": [
-          "build"
+          "./build"
         ]
       }
     }
