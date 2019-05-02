@@ -1,0 +1,68 @@
+////
+/// components/templates/Employee.jsx styles
+/// @author Lexus Drumgold
+////
+
+$employee-border: size(1) solid $light-grey
+
+.adt-employee
+  +respond-to($breakpoint-medium)
+    padding: size(32) 0
+
+
+  border-bottom: $employee-border
+  border-top: $employee-border
+  height: auto
+  width: 100%
+
+  > .ada-container
+    +flex(row, center, space-between)
+    +respond-to($breakpoint-medium)
+      +flex(column, flex-start)
+
+
+    height: min-content
+    max-width: 95%
+
+.employee-name
+  +respond-to($breakpoint-xxlarge, min)
+    font-size: size(28)
+
+
+  font-size: size(21)
+  font-weight: 600
+  margin: 0 0 size(5) 0
+
+.employee-detail
+  +respond-to($breakpoint-small)
+    font-weight: 300
+
+
+  color: $dark-gray
+
+  &::before
+    content: '●'
+    color: $accent-med
+    display: inline-block
+    margin-right: 0.25em
+    width: auto
+
+.employee-salary
+  +respond-to($breakpoint-xxlarge, min)
+    font-size: size(94)
+
+
+  +respond-to($breakpoint-medium)
+    font-size: size(60)
+    margin: 0
+
+
+  +respond-to($breakpoint-small)
+    font-size: size(36)
+    margin-top: size(10)
+
+
+  align-self: flex-end
+  color: $accent-med
+  font-size: size(70.5)
+  font-weight: 700

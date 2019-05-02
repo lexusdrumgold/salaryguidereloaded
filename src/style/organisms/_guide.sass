@@ -1,0 +1,44 @@
+////
+/// components/organisms/Guide.jsx styles
+/// @author Lexus Drumgold
+////
+
+.ado-guide
+  +flex(row, center, center)
+
+  padding: size(60) 0
+
+.guide-header,
+.guide-contents
+  +respond-to($breakpoint-schmedium)
+    width: 100%
+
+
+  // If ads, change width below to 80%
+  width: 100%
+
+.guide-header
+  > .ada-paragraph
+    +respond-to($breakpoint-xxlarge, min)
+
+    font-size: size(16)
+    font-weight: 300
+    margin-bottom: size(30)
+
+    span
+      font-weight: 600
+
+.guide-contents
+  padding: size(18) 0
+
+.guide-pagination
+  +flex(row, center, center)
+
+  margin: 0 size(2.5)
+  width: 100%
+
+.page-count
+  color: $dark-gray
+
+  > span
+    color: $dark

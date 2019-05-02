@@ -1,0 +1,60 @@
+////
+/// components/organisms/Filter.jsx styles
+/// @author Lexus Drumgold
+////
+
+.ado-filter
+  // +flex(column)
+
+  &.ui-sticky
+    background-color: $light
+    border-bottom: size(1) solid $light-grey
+    padding: size(48) 0 size(24)
+    position: fixed
+    top: size(72)
+    left: 0
+    width: 100vw
+
+    > .ada-container
+      max-width: $max-width
+
+  > .ada-container
+    +flex(column)
+
+    max-width: 100%
+
+    .adm-searchbar
+      margin-bottom: size(16)
+
+    .ada-legend
+      color: $dark-gray
+      font-size: size(13)
+      font-weight: 600
+      text-transform: uppercase
+
+    .ada-legend,
+    .ada-fieldset
+      +respond-to($breakpoint-schmedium)
+        width: 60%
+
+
+      +respond-to($breakpoint-medium)
+        width: 100%
+
+
+      width: 40%
+
+.filter-group
+  +flex(row, center, space-between)
+
+  margin: size(5) 0
+
+  > .ada-label
+    +respond-to($breakpoint-xxlarge, min)
+      font-size: size(14)
+
+
+    color: $accent-med
+    font-size: size(12)
+    font-weight: 500
+    text-transform: uppercase

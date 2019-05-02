@@ -1,21 +1,25 @@
 {
   "name": "@dbklab/salaryguidereloaded",
   "version": "1.0.0",
+  "main": "./index.html",
   "description": "Every year, The Diamondback publishes Salary Guide, which contains the salaries of University employees in an easily digestible format. The current templatewas created in 2017, and was also reused for the 2018 edition of Salary Guide. This year, our goal is to revamp the design and features of the site, most notably adding a filter option to the site that'll allow the user to view previous salary data without navigating to a different site.",
   "scripts": {
     "preinstall": "rm -rf node_modules",
-    "dev": "NODE_ENV=development && preact watch --template ./src/index.html",
-    "test": "NODE_ENV=test",
-    "build": "NODE_ENV=production && preact build --no-prerender --template ./src/index.html --clean -p",
-    "stage": "npm test && npm run build",
-    "serve": "npm run stage && serve ./build",
-    "start": "npm run serve"
+    "dev": "rm -rf ./build && NODE_ENV=development && preact watch --template ./src/public/index.html -p 3000",
+    "test": "NODE_ENV=test && jest",
+    "build": "rm -rf ./build && NODE_ENV=production && preact build --clean -p --no-prerender --template ./src/public/index.html",
+    "now-build": "npm run build",
+    "stage": "clear && npm test && npm run build",
+    "stage-now": "clear && npm run stage && now-we-test serve --port=5000",
+    "stage-firebase": "npm run stage && firebase serve --only hosting:production",
+    "deploy": "firebase deploy --only hosting:production",
+    "start": "clear && npm run stage-firebase"
   },
   "dependencies": {
     "@feathersjs/errors": "^3.3.6",
-    "install": "^0.12.2",
+    "axios": "^0.18.0",
+    "jquery": "^3.4.0",
     "now": "^15.0.8",
-    "npm": "^6.9.0",
     "preact": "10.0.0-alpha.3",
     "preact-cli-plugin-env-vars": "^1.2.1",
     "preact-router": "3.0.0",
@@ -34,12 +38,13 @@
     "eslint-config-standard-preact": "^1.1.6",
     "eslint-config-synacor": "^2.0.2",
     "eslint-plugin-import": "^2.17.1",
+    "eslint-plugin-jest": "^22.5.1",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^21.2.1",
+    "jest": "^24.7.1",
     "node-sass": "4.11.0",
     "preact-cli": "3.0.0-next.19",
     "preact-render-spy": "^1.2.1",
@@ -71,6 +76,7 @@
   ],
   "eslintConfig": {
     "extends": [
+      "plugin:jest/recommended",
       "standard",
       "standard-preact"
     ],

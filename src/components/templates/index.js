@@ -4,3 +4,6 @@
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 
+import Employee from './Employee.jsx'
+
+export { Employee }

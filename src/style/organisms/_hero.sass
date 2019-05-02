@@ -2,4 +2,37 @@
 /// components/organisms/Hero.jsx styles
 /// @author Lexus Drumgold
 ////
+
 .ado-hero
+  +flex(row, center, center)
+  +respond-to($breakpoint-xxlarge, min)
+    height: size(675)
+
+
+  +set-bkg-img('mcircle.png', center bottom)
+
+  border-bottom: $accent-light size(5) solid
+  height: size(500)
+  width: 100vw
+
+  > .ada-container
+    +flex(column, stretch, space-between)
+
+    .hero-text
+      +flex(column, flex-start, flex-start)
+      +respond-to($breakpoint-schmedium)
+        width: 100%
+
+
+      margin-top: size(90)
+      width: 33.333%
+
+      #link-explore
+        align-self: flex-end
+
+      .ui-text-special
+        &:first-of-type
+          color: $accent-light
+
+        &:last-of-type
+          color: $accent-med

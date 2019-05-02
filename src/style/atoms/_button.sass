@@ -2,3 +2,18 @@
 /// components/atoms/Button.jsx styles
 /// @author Lexus Drumgold
 ////
+
+.ada-button
+  +flex(row, center, center)
+  +hocus
+    font-weight: 600
+
+
+  color: $accent-med
+  font-size: size(14)
+  font-weight: 600
+  padding: size(13) size(36)
+  text-transform: capitalize
+
+  &[disabled=disabled]
+    color: $dark-gray

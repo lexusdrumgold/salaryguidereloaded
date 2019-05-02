@@ -1,5 +1,8 @@
 // Packages
-import { h, Component } from 'preact'
+import { h, Component, createRef } from 'preact'
+
+// Configuration
+import { AsyncContext } from '../../config/context.config'
 
 /**
  * @file Preact component representing a paragraph element.
@@ -15,18 +18,40 @@ import { h, Component } from 'preact'
  */
 export default class Paragraph extends Component {
   /**
+   * Paragraph reference.
+   *
+   * @type {RefObject<any>}
+   * @instance
+   */
+  paragraph = createRef()
+
+  /**
    * Renders a paragraph element.
    *
-   * @param {object} props - Paragraph properties
-   * @param {object} state - Paragraph state
-   * @returns {preact.Link}
+   * @param {object} props - Component properties
+   * @param {object} state - Component state
+   * @returns {HTMLParagraphElement}
    */
   render(props, state) {
-    const { paragraph, children } = props
-    props.class = (`ada-paragraph ${props.class ? props.class : ''}`).trim()
+    let style = (`ada-paragraph ${props.class ? props.class : ''}`).trim()
+    const { id, children } = props
 
-    return paragraph
-      ? <p dangerouslySetInnerHTML={{ __html: paragraph }} {...props} />
-      : <p {...props}>{children}</p>
+    style = `${style} ui-loading`
+
+    return (
+      <AsyncContext.Consumer>
+        {({ progress }) => {
+          if (progress === 100) setTimeout(this.handle_progress, 1250)
+          return <p ref={this.paragraph} id={id} class={style}>{children}</p>
+        }}
+      </AsyncContext.Consumer>
+    )
   }
+
+  /**
+   * Loading progress handler.
+   *
+   * @returns {undefined} Progress value
+   */
+  handle_progress = () => this.paragraph.current.classList.remove('ui-loading')
 }

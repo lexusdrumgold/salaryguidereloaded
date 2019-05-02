@@ -6,6 +6,17 @@
 .ada-heading
   margin: 0 0 size(5) 0
 
-h1.ada-heading
+  &.ui-text-special
+    +respond-to($breakpoint-xxlarge, min)
+      font-size: size(100)
 
-h2.ada-heading
+
+    +respond-to($breakpoint-schmedium)
+      font-size: size(60)
+
+
+    font-family: $special-font-stack
+    font-size: size(75)
+
+h1.ada-heading
+  margin: 0

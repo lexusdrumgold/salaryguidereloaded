@@ -36,19 +36,18 @@ export default class Progress extends Component {
   /**
    * Renders a progress bar.
    *
-   * @memberof Progress#
    * @param {object} props - Progress properties
    * @param {object} state - Progress state
-   * @returns {GlobalContext.Consumer} progress bar that consumes global context
+   * @returns {AsyncContext.Consumer} Progress bar that consumes async context
    */
   render(props, state) {
-    let style = (`ada-progress ${props.class ? props.class : ''}`).trim()
+    const style = (`ada-progress ${props.class ? props.class : ''}`).trim()
 
     return (
       <AsyncContext.Consumer>
         {
           ({ progress }) => {
-            if (progress === 100) setTimeout(this.handle_progress, 750)
+            if (progress === 100) setTimeout(this.handle_progress, 1250)
 
             return (
               <div ref={this.progress} class={style}>

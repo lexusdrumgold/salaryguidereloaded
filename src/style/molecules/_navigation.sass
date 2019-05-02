@@ -3,4 +3,34 @@
 /// @author Lexus Drumgold
 ////
 
-.adm-navigation
+.adm-footer-navigation
+  color: $dark
+  font-size: size(16)
+  font-weight: 300
+
+  > .ada-link
+    color: $dark
+    text-transform: uppercase
+
+.adm-social-navigation
+  +flex(row, center, center)
+  +respond-to($breakpoint-xxlarge, min)
+    width: 16.667%
+
+
+  background-color: rgba($accent-med, 0.85)
+  padding: size(12) size(16)
+  width: 8%
+
+  > .ada-container
+    +flex(row, center, space-between)
+
+    width: max-content
+
+    .ada-icon
+      stroke: $light
+
+      &:nth-of-type(3),
+      &:last-of-type
+        fill: $light
+        stroke: none
