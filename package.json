@@ -1,7 +1,7 @@
 {
   "name": "@dbklab/salaryguidereloaded",
   "version": "1.0.0",
-  "main": "./build/index.html",
+  "main": "./index.html",
   "description": "Every year, The Diamondback publishes Salary Guide, which contains the salaries of University employees in an easily digestible format. The current templatewas created in 2017, and was also reused for the 2018 edition of Salary Guide. This year, our goal is to revamp the design and features of the site, most notably adding a filter option to the site that'll allow the user to view previous salary data without navigating to a different site.",
   "scripts": {
     "preinstall": "rm -rf node_modules",
@@ -10,9 +10,10 @@
     "build": "rm -rf ./build && NODE_ENV=production && preact build --clean -p --no-prerender --template ./src/public/index.html",
     "now-build": "npm run build",
     "stage": "clear && npm test && npm run build",
-    "now-stage": "clear && npm run stage && now-we-test serve --port=5000",
-    "serve": "clear && npm run stage && serve -l 8080 ./build",
-    "start": "clear && npm run serve"
+    "stage-now": "clear && npm run stage && now-we-test serve --port=5000",
+    "stage-firebase": "npm run stage && firebase serve --only hosting:production",
+    "deploy": "firebase deploy --only hosting:production",
+    "start": "clear && npm run stage-firebase"
   },
   "dependencies": {
     "@feathersjs/errors": "^3.3.6",

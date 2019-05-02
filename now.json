@@ -7,12 +7,40 @@
       "src": "package.json",
       "use": "@now/static",
       "config": {
-        "distDir": "./build",
-        "files": [
-          "./build"
-        ]
+        "distDir": "./build"
+      }
+    },
+    {
+      "src": "package-lock.json",
+      "use": "@now/static",
+      "config": {
+        "distDir": "./build"
+      }
+    },
+    {
+      "src": "build/*.(html|css|json|ico|ttf)",
+      "use": "@now/static",
+      "config": {
+        "distDir": "./build"
+      }
+    },
+    {
+      "src": "build/assets/**/*.(png|svg|ttf)",
+      "use": "@now/static",
+      "config": {
+        "distDir": "./build/assets"
+      }
+    },
+    {
+      "src": "build/*.js",
+      "use": "@now/node",
+      "config": {
+        "distDir": "./build"
       }
     }
+  ],
+  "files": [
+    "./build"
   ],
   "routes": [
     {
@@ -27,14 +55,14 @@
       "dest": "/$1"
     },
     {
-      "src": "./(.*)\\.(.*)\\.(js|css|json|ico)$",
+      "src": "./(.*)\\.(.*)\\.(js|css|json|ico|ttf)$",
       "headers": {
         "cache-control": "Immutable"
       },
       "dest": "/$1.$2.$3"
     },
     {
-      "src": "./(.*)\\.(js|css|json|ico)$",
+      "src": "./(.*)\\.(js|css|json|ico|ttf)$",
       "dest": "/$1.$2"
     },
     {
