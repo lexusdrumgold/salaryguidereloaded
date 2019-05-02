@@ -1,5 +1,6 @@
 // Packages
 import { h, Component, Fragment } from 'preact'
+import $ from 'jquery'
 
 // Components
 import Filter from './Filter.jsx'
@@ -77,71 +78,68 @@ export default class Guide extends Component {
    */
   render(props, state) {
     return (
-      <Fragment>
-        <section class='ado-guide'>
-          <div class='ada-container'>
-            <div class='guide-header'>
-              <Heading size={3} >
-                Search the Diamondback Salary Guide
-              </Heading>
-              <Paragraph>
-                At The Diamondback, we’ve pledged to hold the University of Maryland accountable in our coverage. Our annual salary guide adheres to that mission, laying out each university employee’s yearly pay in an easily digestible format.
-                <br /><br />
-                Get started by filtering by <span>salary, job title, department, and more.</span>
-              </Paragraph>
+      <section class='ado-guide' id='guide'>
+        <div class='ada-container'>
+          <div class='guide-header'>
+            <Heading size={3} >
+              Search the Diamondback Salary Guide
+            </Heading>
+            <Paragraph>
+              At The Diamondback, we’ve pledged to hold the University of Maryland accountable in our coverage. Our annual salary guide adheres to that mission, laying out each university employee’s yearly pay in an easily digestible format.
+              <br /><br />
+              Get started by filtering by <span>salary, job title, department, and more.</span>
+            </Paragraph>
 
-              <Filter
-                guide={state}
-                handle_params={this.handle_params}
-                handle_url={this.handle_url}
-              />
-            </div>
+            <Filter
+              guide={state}
+              handle_params={this.handle_params}
+              handle_url={this.handle_url}
+            />
+          </div>
+          <div class='guide-contents'>
             {
               state.loading
                 ? <Loading />
-                : (
-                  <div class='guide-contents' id='explore'>
-                    <p>{`${state.data.count} Results`}</p>
-                    {
-                      state.data.employees.length
-                        ? state.data.employees.map(employee =>
-                          <Employee {...employee} />
-                        )
-                        : null
-                    }
-                  </div>
-                )
-            }
-            {
-              state.page_limit
-                ? (
-                  <div className='guide-pagination'>
-                    {
-                      state.params.page === '1'
-                        ? null
-                        : <BackButton
-                          onClick={() => this.handle_button('back')}
-                        />
-                    }
-                    <Paragraph class='page-count'>
-                      <span>{`${state.params.page}`}</span>
-                      &nbsp;/&nbsp;{`${state.page_limit}`}
-                    </Paragraph>
-                    {
-                      state.params.page === `${state.page_limit}`
-                        ? null
-                        : <NextButton
-                          onClick={() => this.handle_button()}
-                        />
-                    }
-                  </div>
-                )
-                : null
+                : <Fragment>
+                  <p>{`${state.data.count} Results`}</p>
+                  {
+                    state.data.employees.length
+                      ? state.data.employees.map(employee =>
+                        <Employee {...employee} />
+                      )
+                      : null
+                  }
+                </Fragment>
             }
           </div>
-        </section>
-      </Fragment>
-
+          {
+            state.page_limit
+              ? (
+                <div className='guide-pagination'>
+                  {
+                    state.params.page === '1'
+                      ? null
+                      : <BackButton
+                        onClick={() => this.handle_button('back')}
+                      />
+                  }
+                  <Paragraph class='page-count'>
+                    <span>{`${state.params.page}`}</span>
+                    &nbsp;/&nbsp;{`${state.page_limit}`}
+                  </Paragraph>
+                  {
+                    state.params.page === `${state.page_limit}`
+                      ? null
+                      : <NextButton
+                        onClick={() => this.handle_button()}
+                      />
+                  }
+                </div>
+              )
+              : null
+          }
+        </div>
+      </section>
     )
   }
 
@@ -162,17 +160,15 @@ export default class Guide extends Component {
       const { count, data } = req.data
 
       setTimeout(() => {
-        this.setState({
+        this.setState(state => ({
           data: { count, employees: data },
           loading: false,
           params: params,
           page_limit: params.search === ''
             ? Math.ceil(count / 10) : Math.ceil(req.data.data.length / 10),
           url: url
-        })
-
-        window.location.href = '#explore'
-      }, 1250)
+        }))
+      }, 1500)
 
       console.groupEnd()
     } catch (err) {
@@ -192,7 +188,12 @@ export default class Guide extends Component {
       key = params.page === '1' ? '1' : `${parseInt(params.page) - 1}`
     }
 
-    return this.handle_params('page', key)
+    const selectors = $('html, body')
+    selectors.animate({
+      scrollTop: $('.ado-filter').offset().top - 200
+    }, 500)
+
+    this.handle_params('page', key)
   }
 
   /**

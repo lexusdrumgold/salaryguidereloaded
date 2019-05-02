@@ -49,14 +49,18 @@ export default class Header extends Component {
     return (
       <header class={(`ado-header ${props.class ? props.class : ''}`).trim()}>
         <div className='ada-container'>
-          <Link id='logo' href='https://dbknews.com' target='_blank'>
+          <Link id='logo' href='#' onClick={e => this.handle_link('body', e)}>
             <img src={logo} alt='DBK Logo' />
           </Link>
 
           <nav>
-            <Link href='#about'>About</Link>
+            <Link href='#about' onClick={e => this.handle_link('#about', e)}>
+              About
+            </Link>
             &nbsp; | &nbsp;
-            <Link href='#explore'>Explore</Link>
+            <Link href='#guide' onClick={e => this.handle_link('#guide', e)}>
+              Explore
+            </Link>
           </nav>
         </div>
       </header>
@@ -64,6 +68,12 @@ export default class Header extends Component {
   }
 
   // Helpers
+  handle_link = (selector, event) => {
+    $('html, body').animate({ scrollTop: $(selector).offset().top - 50 }, 1250)
+    $('.ado-filter').removeClass('ui-sticky').css({ top: 0 })
+
+    event.preventDefault()
+  }
 
   /**
    * When the top of the hero is out of the viewport, the header will have the
