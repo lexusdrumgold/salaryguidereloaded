@@ -1,5 +1,6 @@
 // Packages
 import { h, Component } from 'preact'
+import $ from 'jquery'
 
 // Components
 import { Heading, Icon, Link } from '../atoms'
@@ -8,8 +9,6 @@ import { Heading, Icon, Link } from '../atoms'
  * @file Preact component representing the hero section.
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
-
-// TODO: Add Social Navigation
 
 /**
  * Preact component representing the hero section.
@@ -35,14 +34,32 @@ export default class Hero extends Component {
               return <Heading class='ui-text-special'>{heading}</Heading>
             })}
 
-            <Link id='link-explore' href='#explore'>
+            <Link
+              id='link-explore'
+              href='#guide'
+              onClick={e => this.handle_link('#guide', e)}
+            >
               Explore <Icon class='ui-accent-light' name='chevron-down' />
             </Link>
           </div>
-
-          {/* TODO: Add Social Navigation */}
         </div>
       </section>
     )
+  }
+
+  // Helpers
+
+  /**
+   * Smooth scrolls to an element.
+   *
+   * @param {string} selector - Element selector string
+   * @param {event} Event - onClick event
+   * @returns {undefined}
+   */
+  handle_link = (selector, event) => {
+    $('html, body').animate({ scrollTop: $(selector).offset().top - 50 }, 500)
+    $('.ado-filter').removeClass('ui-sticky').css({ top: 0 })
+
+    event.preventDefault()
   }
 }
