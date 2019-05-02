@@ -6,7 +6,7 @@ import $ from 'jquery'
 import logo from '../../assets/dbk.png'
 
 // Components
-import { Link, Icon } from '../atoms'
+import { Link } from '../atoms'
 
 /**
  * @file Preact component representing the header.
@@ -56,9 +56,7 @@ export default class Header extends Component {
           <nav>
             <Link href='#about'>About</Link>
             &nbsp; | &nbsp;
-            <Link href='#explore'>
-              Explore <Icon name='search' />
-            </Link>
+            <Link href='#explore'>Explore</Link>
           </nav>
         </div>
       </header>
@@ -76,7 +74,7 @@ export default class Header extends Component {
   handle_window_scroll = () => {
     if ($(window).scrollTop() === 0) {
       $('.ado-header').removeClass('ui-sticky')
-    } else if ($(window).scrollTop() > ($('.ado-hero').height() - 100)) {
+    } else if ($(window).scrollTop() > ($('.ado-hero').outerHeight() - 200)) {
       $('.ado-header').addClass('ui-sticky')
     }
   }

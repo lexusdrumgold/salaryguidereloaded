@@ -7,37 +7,38 @@
       "src": "package.json",
       "use": "@now/static",
       "config": {
-        "distDir": "build"
+        "distDir": "build",
+        "files": [
+          "build"
+        ]
       }
     }
   ],
   "routes": [
     {
-      "src": "/favicon.ico",
-      "dest": "/favicon.ico"
-    },
-    {
-      "src": "/manifest.json",
-      "dest": "/manifest.json"
-    },
-    {
-      "src": "/(.*).css",
-      "dest": "/$1.css"
-    },
-    {
-      "src": "/(.*).js",
-      "dest": "/$1.js"
-    },
-    {
-      "src": "/(.*).esm.js",
-      "dest": "/$1.esm.js"
-    },
-    {
-      "src": "/assets/(.*)",
+      "src": "./assets/(.*)",
       "dest": "/assets/$1"
     },
     {
-      "src": "/(.*)",
+      "src": "./sw-esm.js",
+      "headers": {
+        "cache-control": "Immutable"
+      },
+      "dest": "/$1"
+    },
+    {
+      "src": "./(.*)\\.(.*)\\.(js|css|json|ico)$",
+      "headers": {
+        "cache-control": "Immutable"
+      },
+      "dest": "/$1.$2.$3"
+    },
+    {
+      "src": "./(.*)\\.(js|css|json|ico)$",
+      "dest": "/$1.$2"
+    },
+    {
+      "src": "./(.*)",
       "dest": "/index.html"
     }
   ]

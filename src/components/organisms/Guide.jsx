@@ -1,14 +1,11 @@
 // Packages
-import { h, Component } from 'preact'
-// import $ from 'jquery'
-
-// Configuration
-import { FilterContext } from '../../config/context.config'
+import { h, Component, Fragment } from 'preact'
 
 // Components
 import Filter from './Filter.jsx'
 
-import { Heading, Paragraph } from '../atoms'
+import { BackButton, Heading, NextButton, Paragraph } from '../atoms'
+import { Loading } from '../molecules'
 import { Employee } from '../templates'
 
 // Utility functions
@@ -39,16 +36,14 @@ export default class Guide extends Component {
    * @property {string} params.order - How to sort the data
    * @property {string} params.page - Page to start at
    * @property {string} url - Request url
-   * @property {object[]} years - Years dropdown filter options
    */
   state = {
-    data: { employees: [], count: 0 },
+    data: { count: 0, employees: [] },
     loading: true,
     params: {
       search: '', sortby: 'salary', order: 'desc', page: '1'
     },
-    url: '/year/2019',
-    years: []
+    url: '/year/2019'
   }
 
   /**
@@ -61,9 +56,7 @@ export default class Guide extends Component {
     console.info('Guide section mounted.')
 
     try {
-      console.group('Getting Salary Guide table options...')
-
-      // Get table data based on current state
+      // ! Get table data based on current state
       this.get_data()
     } catch (err) {
       console.error(err.message)
@@ -72,7 +65,7 @@ export default class Guide extends Component {
   }
 
   componentDidCatch(err, info) {
-    console.error(err.message, { err: err, info: info })
+    console.error(err.message, info)
   }
 
   /**
@@ -84,10 +77,10 @@ export default class Guide extends Component {
    */
   render(props, state) {
     return (
-      <FilterContext.Provider value={state}>
-        <section class='ado-guide' id='explore'>
-          <div className='ada-container'>
-            <div className='guide-header'>
+      <Fragment>
+        <section class='ado-guide'>
+          <div class='ada-container'>
+            <div class='guide-header'>
               <Heading size={3} >
                 Search the Diamondback Salary Guide
               </Heading>
@@ -103,19 +96,51 @@ export default class Guide extends Component {
                 handle_url={this.handle_url}
               />
             </div>
-            <div className='guide-contents'>
-              <p>{`${state.data.count} Results`}</p>
-              {
-                state.data.employees.length
-                  ? state.data.employees.map(employee =>
-                    <Employee {...employee} />
-                  )
-                  : null
-              }            
-            </div>
+            {
+              state.loading
+                ? <Loading />
+                : (
+                  <div class='guide-contents' id='explore'>
+                    <p>{`${state.data.count} Results`}</p>
+                    {
+                      state.data.employees.length
+                        ? state.data.employees.map(employee =>
+                          <Employee {...employee} />
+                        )
+                        : null
+                    }
+                  </div>
+                )
+            }
+            {
+              state.page_limit
+                ? (
+                  <div className='guide-pagination'>
+                    {
+                      state.params.page === '1'
+                        ? null
+                        : <BackButton
+                          onClick={() => this.handle_button('back')}
+                        />
+                    }
+                    <Paragraph class='page-count'>
+                      <span>{`${state.params.page}`}</span>
+                      &nbsp;/&nbsp;{`${state.page_limit}`}
+                    </Paragraph>
+                    {
+                      state.params.page === `${state.page_limit}`
+                        ? null
+                        : <NextButton
+                          onClick={() => this.handle_button()}
+                        />
+                    }
+                  </div>
+                )
+                : null
+            }
           </div>
         </section>
-      </FilterContext.Provider>
+      </Fragment>
 
     )
   }
@@ -123,6 +148,8 @@ export default class Guide extends Component {
   // Helpers
 
   get_data = async () => {
+    this.setState({ loading: true })
+
     try {
       console.group('Getting Salary Guide data...')
 
@@ -131,13 +158,21 @@ export default class Guide extends Component {
       let req = await request({ url: url, params: params, method: 'get' })
 
       console.info('Retreived Salary Guide data ->', req.data)
+
       const { count, data } = req.data
-      this.setState({
-        data: { count, employees: data },
-        loading: false,
-        page: 1,
-        page_limit: Math.ceil(count / 10)
-      })
+
+      setTimeout(() => {
+        this.setState({
+          data: { count, employees: data },
+          loading: false,
+          params: params,
+          page_limit: params.search === ''
+            ? Math.ceil(count / 10) : Math.ceil(req.data.data.length / 10),
+          url: url
+        })
+
+        window.location.href = '#explore'
+      }, 1250)
 
       console.groupEnd()
     } catch (err) {
@@ -145,21 +180,53 @@ export default class Guide extends Component {
     }
   }
 
-  // Gets passed to the Filter component
+  handle_button = (type = 'next') => {
+    const { page_limit, params } = this.state
+
+    let key
+
+    if (type === 'next') {
+      const limit = `${page_limit}`
+      key = params.page === limit ? limit : `${parseInt(params.page) + 1}`
+    } else {
+      key = params.page === '1' ? '1' : `${parseInt(params.page) - 1}`
+    }
+
+    return this.handle_params('page', key)
+  }
+
+  /**
+   * Handles changes to the search parameters.
+   *
+   * @param {string} type - Parameter type. search | sortby | order | page
+   * @param {string} value - Parameter value
+   * @returns {undefined}
+   */
   handle_params = (type, value) => {
     console.info('Handling search parameter change:', { type, value })
 
-    type = type.replace(/\s/g, '');
+    type = type.replace(/\s/g, '')
 
     let params_copy = Object.assign({}, this.state.params)
     params_copy[type] = value
 
-    this.setState(state => ({ ...state, loading: true, params: params_copy }), () => this.get_data())
+    this.setState(
+      state => ({ ...state, loading: true, params: params_copy }),
+      () => this.get_data()
+    )
   }
 
-  // Gets passed to the Filter component
+  /**
+   * Handles changes to the request url.
+   *
+   * @param {string} url - New request url. /2014 - /<current_year>
+   * @returns {undefined}
+   */
   handle_url = url => {
     console.info('Handling url parameter change:', url)
-    this.setState(state => ({ ...state, loading: true, url: url }), () => this.get_data())
+    this.setState(
+      state => ({ ...state, loading: true, url: url }),
+      () => this.get_data()
+    )
   }
 }

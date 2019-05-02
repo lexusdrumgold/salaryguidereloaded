@@ -4,28 +4,45 @@
 ////
 
 .ado-filter
-  +flex(column)
+  // +flex(column)
 
-  > .adm-searchbar
-    margin-bottom: size(16)
+  &.ui-sticky
+    background-color: $light
+    border-bottom: size(1) solid $light-grey
+    padding: size(48) 0 size(24)
+    position: fixed
+    top: size(72)
+    left: 0
+    width: 100vw
 
-  .ada-legend
-    color: $dark-gray
-    font-size: size(13)
-    font-weight: 600
-    text-transform: uppercase
+    > .ada-container
+      max-width: $max-width
 
-  .ada-legend,
-  .ada-fieldset
-    +respond-to($breakpoint-schmedium)
-      width: 60%
+  > .ada-container
+    +flex(column)
+
+    max-width: 100%
+
+    .adm-searchbar
+      margin-bottom: size(16)
+
+    .ada-legend
+      color: $dark-gray
+      font-size: size(13)
+      font-weight: 600
+      text-transform: uppercase
+
+    .ada-legend,
+    .ada-fieldset
+      +respond-to($breakpoint-schmedium)
+        width: 60%
 
 
-    +respond-to($breakpoint-medium)
-      width: 100%
+      +respond-to($breakpoint-medium)
+        width: 100%
 
 
-    width: 40%
+      width: 40%
 
 .filter-group
   +flex(row, center, space-between)

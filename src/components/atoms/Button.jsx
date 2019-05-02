@@ -14,7 +14,7 @@ import Icon from './Icon.jsx'
  *
  * @class Button
  * @exports Button
- * @extends preact.Component
+ * @extends Component
  */
 export default class Button extends Component {
   /**
@@ -26,6 +26,7 @@ export default class Button extends Component {
    */
   render(props, state) {
     props.class = (`ada-button ${props.class ? props.class : ''}`).trim()
+    props.disabled = props.disabled ? 'disabled' : undefined
 
     let children = props.children
     delete props.children
@@ -35,11 +36,40 @@ export default class Button extends Component {
 }
 
 /**
+ * Preact component representing a back button.
+ *
+ * @class BackButton
+ * @exports BackButton
+ * @extends Component
+ */
+export class BackButton extends Component {
+  /**
+   * Renders a back button.
+   *
+   * @param {object} props - Component properties
+   * @param {object} state - Component state
+   * @returns {HTMLButtonElement}
+   */
+  render(props, state) {
+    return (
+      <Button
+        disabled={props.disabled}
+        id={props.id ? props.id : 'btn-back'}
+        class={props.class}
+        onClick={props.onClick}
+      >
+        <i class='fas fa-chevron-left ada-icon' />
+      </Button>
+    )
+  }
+}
+
+/**
  * Preact component representing a close button.
  *
  * @class CloseButton
  * @exports CloseButton
- * @extends preact.Component
+ * @extends Component
  */
 export class CloseButton extends Component {
   /**
@@ -63,7 +93,7 @@ export class CloseButton extends Component {
  *
  * @class FilterButton
  * @exports FilterButton
- * @extends preact.Component
+ * @extends Component
  */
 export class FilterButton extends Component {
   /**
@@ -77,6 +107,35 @@ export class FilterButton extends Component {
     return (
       <Button id='btn-filter' class={props.class} onClick={props.onClick}>
         <Icon name='filter' />
+      </Button>
+    )
+  }
+}
+
+/**
+ * Preact component representing a back button.
+ *
+ * @class NextButton
+ * @exports NextButton
+ * @extends Component
+ */
+export class NextButton extends Component {
+  /**
+   * Renders a next button.
+   *
+   * @param {object} props - Component properties
+   * @param {object} state - Component state
+   * @returns {HTMLButtonElement}
+   */
+  render(props, state) {
+    return (
+      <Button
+        disabled={props.disabled}
+        id={props.id ? props.id : 'btn-next'}
+        class={props.class}
+        onClick={props.onClick}
+      >
+        <i class='fas fa-chevron-right ada-icon' />
       </Button>
     )
   }

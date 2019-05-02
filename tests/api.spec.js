@@ -22,7 +22,7 @@ describe('https://api.dbknews.com/salary', () => {
       const req = await request(default_config)
 
       expect(req.status).toBe(200)
-      expect(req.data).toEqual(expect.arrayContaining(default_resp))
+      expect(req.data.data).toEqual(expect.arrayContaining(default_resp))
     } catch (err) {
       console.error('Error testing API call ->', err.message)
     }
@@ -38,7 +38,7 @@ describe('https://api.dbknews.com/salary', () => {
       const req = await request(default_config_2)
 
       expect(req.status).toBe(200)
-      expect(req.data).toEqual(expect.arrayContaining(default_resp_2))
+      expect(req.data.data).toEqual(expect.arrayContaining(default_resp_2))
     } catch (err) {
       console.error('Error testing API call ->', err.message)
     }

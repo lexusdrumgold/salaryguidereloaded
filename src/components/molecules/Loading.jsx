@@ -1,9 +1,6 @@
 // Packages
 import { h, Component } from 'preact'
 
-// Components
-import { Icon } from '../atoms'
-
 /**
  * @file Preact component representing a loading component.
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
@@ -23,7 +20,7 @@ export default class Loading extends Component {
     return (
       <div class={style}>
         <div className='ada-container'>
-          <Icon name='loader' />
+          <i class='far fa-spinner-third fa-spin ada-icon' />
         </div>
       </div>
     )

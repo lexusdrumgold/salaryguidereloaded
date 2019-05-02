@@ -36,7 +36,7 @@ export default class Searchbar extends Component {
     return (
       <div class={style}>
         <div class='ada-container'>
-          <Input icon='search' input={input_props} />
+          <i class='fas fa-search ada-icon' /> <Input input={input_props} />
         </div>
       </div>
     )

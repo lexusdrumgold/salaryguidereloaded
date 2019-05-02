@@ -53,14 +53,14 @@ export default class Employee extends Component {
   // Helpers
   get_employee = () => {
     const { Division, Department, Title, Employee, Salary } = this.props
-    const department_arr = Department.toLowerCase().split('-')
+    const department_arr = Department.split('-')
 
     return {
       name: Employee,
       department: `${department_arr[0]} | ${department_arr[1]}`,
-      division: Division.toLowerCase(),
-      title: Title.toLowerCase(),
-      salary: Salary.toLowerCase()
+      division: Division,
+      title: Title,
+      salary: Salary
     }
   }
 }
