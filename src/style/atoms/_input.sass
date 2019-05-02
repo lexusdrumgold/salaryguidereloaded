@@ -18,13 +18,20 @@
       font-weight: 600
 
 
+    font-size: size(14)
+    height: 100%
     padding: size(24) size(10)
     width: 97.5%
 
+    &:focus,
     &::placeholder
-      +respond-to($breakpoint-schmedium)
-        font-size: size(22)
-
-
       font-family: $text-font-stack
-      font-size: size(24)
+
+    &:focus
+      color: $accent-med
+      font-weight: 600
+
+    &:hover
+      color: $accent-med
+      font-family: $text-font-stack
+      font-weight: 600
