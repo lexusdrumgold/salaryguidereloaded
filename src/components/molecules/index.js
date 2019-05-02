@@ -5,7 +5,12 @@
  */
 
 import Loading from './Loading.jsx'
-import { FooterNavigation, SocialNavigation } from './Navigation.jsx'
+import {
+  HeaderNavigation, FooterNavigation, SocialNavigation
+} from './Navigation.jsx'
+import Pagination from './Pagination.jsx'
 import Searchbar from './Searchbar.jsx'
 
-export { FooterNavigation, Loading, Searchbar, SocialNavigation }
+export {
+  HeaderNavigation, FooterNavigation, Loading, Pagination, Searchbar, SocialNavigation
+}

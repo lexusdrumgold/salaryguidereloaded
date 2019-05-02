@@ -21,12 +21,13 @@
       max-width: $max-width
 
   > .ada-container
-    +flex(column)
+    +flex(column, flex-start, center)
 
     max-width: 100%
 
     .adm-searchbar
       margin-bottom: size(16)
+      width: 100%
 
     .ada-legend
       color: $dark-gray
@@ -46,6 +47,10 @@
 
       width: 40%
 
+    .adm-fieldset
+      > .adm-pagination
+        font-size: size(12)
+
 .filter-group
   +flex(row, center, space-between)
 
@@ -60,3 +65,23 @@
     font-size: size(12)
     font-weight: 500
     text-transform: uppercase
+
+.filter-pages
+  +flex(row, center, space-between)
+
+  width: 100%
+
+  > .ada-paragraph
+    color: $dark-gray
+    font-size: size(13)
+    font-weight: 600
+    text-transform: uppercase
+
+  > .adm-pagination
+    width: auto
+
+    .ada-paragraph
+      font-size: size(13)
+
+    #btn-next
+      padding-right: 0 !important

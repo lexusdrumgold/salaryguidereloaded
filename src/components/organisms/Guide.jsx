@@ -5,8 +5,8 @@ import $ from 'jquery'
 // Components
 import Filter from './Filter.jsx'
 
-import { BackButton, Heading, NextButton, Paragraph } from '../atoms'
-import { Loading } from '../molecules'
+import { Heading, Paragraph } from '../atoms'
+import { Loading, Pagination } from '../molecules'
 import { Employee } from '../templates'
 
 // Utility functions
@@ -94,6 +94,10 @@ export default class Guide extends Component {
               guide={state}
               handle_params={this.handle_params}
               handle_url={this.handle_url}
+              current_page={state.params.page}
+              page_limit={state.page_limit}
+              handle_button={this.handle_button}
+              count={state.data.count}
             />
           </div>
           <div class='guide-contents'>
@@ -101,7 +105,6 @@ export default class Guide extends Component {
               state.loading
                 ? <Loading />
                 : <Fragment>
-                  <p>{`${state.data.count} Results`}</p>
                   {
                     state.data.employees.length
                       ? state.data.employees.map(employee =>
@@ -112,32 +115,11 @@ export default class Guide extends Component {
                 </Fragment>
             }
           </div>
-          {
-            state.page_limit
-              ? (
-                <div className='guide-pagination'>
-                  {
-                    state.params.page === '1'
-                      ? null
-                      : <BackButton
-                        onClick={() => this.handle_button('back')}
-                      />
-                  }
-                  <Paragraph class='page-count'>
-                    <span>{`${state.params.page}`}</span>
-                    &nbsp;/&nbsp;{`${state.page_limit}`}
-                  </Paragraph>
-                  {
-                    state.params.page === `${state.page_limit}`
-                      ? null
-                      : <NextButton
-                        onClick={() => this.handle_button()}
-                      />
-                  }
-                </div>
-              )
-              : null
-          }
+          <Pagination
+            current_page={state.params.page}
+            page_limit={state.page_limit}
+            handle_button={this.handle_button}
+          />
         </div>
       </section>
     )

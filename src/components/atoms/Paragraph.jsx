@@ -33,19 +33,10 @@ export default class Paragraph extends Component {
    * @returns {HTMLParagraphElement}
    */
   render(props, state) {
-    let style = (`ada-paragraph ${props.class ? props.class : ''}`).trim()
+    const style = (`ada-paragraph ${props.class ? props.class : ''}`).trim()
     const { id, children } = props
 
-    style = `${style} ui-loading`
-
-    return (
-      <AsyncContext.Consumer>
-        {({ progress }) => {
-          if (progress === 100) setTimeout(this.handle_progress, 1250)
-          return <p ref={this.paragraph} id={id} class={style}>{children}</p>
-        }}
-      </AsyncContext.Consumer>
-    )
+    return <p ref={this.paragraph} id={id} class={style}>{children}</p>
   }
 
   /**
