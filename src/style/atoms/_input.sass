@@ -7,8 +7,15 @@
   +flex(row, center)
 
   > input
-    +respond-to($breakpoint-xlarge, min)
-      font-size: size(16)
+    +hocus
+      +respond-to($breakpoint-xxlarge, min)
+        font-size: size(21)
+
+
+      color: $accent-med
+      font-family: $text-font-stack
+      font-size: size(20)
+      font-weight: 600
 
 
     font-size: size(14)

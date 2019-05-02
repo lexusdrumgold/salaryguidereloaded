@@ -29,7 +29,7 @@ export default class Searchbar extends Component {
 
     const input_props = {
       onChange: props.onChange,
-      onInput: props.onChange,
+      // onInput: props.onChange,
       placeholder: 'Search the salary guide database'
     }
 

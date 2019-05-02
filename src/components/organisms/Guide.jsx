@@ -159,6 +159,9 @@ export default class Guide extends Component {
   }
 
   handle_button = (type = 'next') => {
+    if (this.state.loading) {
+      return
+    }
     const { page_limit, params } = this.state
 
     let key
@@ -186,15 +189,21 @@ export default class Guide extends Component {
    * @returns {undefined}
    */
   handle_params = (type, value) => {
+    if (this.state.loading) {
+      return
+    }
     console.info('Handling search parameter change:', { type, value })
 
     type = type.replace(/\s/g, '')
 
     let params_copy = Object.assign({}, this.state.params)
     params_copy[type] = value
+    if (type !== 'page') {
+      params_copy['page'] = '1'
+    }
 
     this.setState(
-      state => ({ ...state, loading: true, params: params_copy }),
+      state => ({ ...state, params: params_copy }),
       () => this.get_data()
     )
   }
@@ -208,7 +217,7 @@ export default class Guide extends Component {
   handle_url = url => {
     console.info('Handling url parameter change:', url)
     this.setState(
-      state => ({ ...state, loading: true, url: url }),
+      state => ({ ...state, url: url }),
       () => this.get_data()
     )
   }
