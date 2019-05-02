@@ -25,21 +25,20 @@ salary data without navigating to a different site.
 At The Diamondback, we’ve pledged to hold the University of Maryland accountable
 in our coverage. Our annual salary guide adheres to that mission, laying out
 each university employee’s yearly pay in an easily digestible format. Here, you
-can find charts searchable by salary, department, title and other information. 
+can find information searchable by salary, department, title and other items.  
 
 Each year, the university provides this public data to The Diamondback in a
-basic Excel spreadsheet. We’ve rendered its contents on the online without
-tampering; if so inclined, readers could request the same public data from the
-university to receive all of the information presented in this guide. 
+basic Excel spreadsheet. We’ve rendered its contents online without tampering;
+if so inclined, readers could request the same public data from the university
+to receive all of the information presented in this guide.  
 
-The Diamondback chooses to compile this data year after year as a service to our
+The Diamondback chooses to compile this data each year as a service to our
 readers — giving students, alumni, employees and others in the university
 community immediate, comprehensive access. As with all of our news coverage, the
-salary guide maintains The Diamondback’s commitment to objectivity. We won’t
-tell you what conclusions to draw from these numbers, but it’s our hope that
-they’ll give you every bit of information you need to reflect on your own. As
-always, your takeaways from this information are your own — just as they should
-be.
+salary guide maintains our commitment to objectivity. We won’t tell you what
+conclusions to draw from these numbers, but it’s our hope that they’ll give you
+the information you need to reflect on your own. As always, your takeaways from
+this information are your own — just as they should be.  
 
 ## Usage
 
