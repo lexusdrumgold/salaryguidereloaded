@@ -4,14 +4,12 @@
 ////
 
 .ado-filter
+  // +flex(column)
+
   &.ui-sticky
-    +respond-to($breakpoint-small)
-      position: relative
-
-
     background-color: $light
     border-bottom: size(1) solid $light-grey
-    padding: size(30) 0 size(12)
+    padding: size(48) 0 size(24)
     position: fixed
     top: size(72)
     left: 0
@@ -21,13 +19,12 @@
       max-width: $max-width
 
   > .ada-container
-    +flex(column, flex-start, center)
+    +flex(column)
 
     max-width: 100%
 
     .adm-searchbar
       margin-bottom: size(16)
-      width: 100%
 
     .ada-legend
       color: $dark-gray
@@ -47,10 +44,6 @@
 
       width: 40%
 
-    .adm-fieldset
-      > .adm-pagination
-        font-size: size(12)
-
 .filter-group
   +flex(row, center, space-between)
 
@@ -65,23 +58,3 @@
     font-size: size(12)
     font-weight: 500
     text-transform: uppercase
-
-.filter-pages
-  +flex(row, center, space-between)
-
-  width: 100%
-
-  > .ada-paragraph
-    color: $dark-gray
-    font-size: size(13)
-    font-weight: 600
-    text-transform: uppercase
-
-  > .adm-pagination
-    width: auto
-
-    .ada-paragraph
-      font-size: size(14)
-
-    #btn-next
-      padding-right: 0 !important
