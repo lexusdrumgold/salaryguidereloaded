@@ -55,6 +55,7 @@ export default class Guide extends Component {
    */
   async componentDidMount() {
     console.info('Guide section mounted.')
+    $(window).keydown(this.handle_key_press)
 
     try {
       // ! Get table data based on current state
@@ -110,7 +111,7 @@ export default class Guide extends Component {
                       ? state.data.employees.map(employee =>
                         <Employee {...employee} />
                       )
-                      : null
+                      : <h3>No results found.</h3>
                   }
                 </Fragment>
             }
@@ -123,6 +124,10 @@ export default class Guide extends Component {
         </div>
       </section>
     )
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.loading !== this.state.loading
   }
 
   // Helpers
@@ -141,16 +146,16 @@ export default class Guide extends Component {
 
       const { count, data } = req.data
 
-      setTimeout(() => {
-        this.setState(state => ({
-          data: { count, employees: data },
-          loading: false,
-          params: params,
-          page_limit: params.search === ''
-            ? Math.ceil(count / 10) : Math.ceil(req.data.data.length / 10),
-          url: url
-        }))
-      }, 1500)
+      this.setState(state => ({
+        data: { count, employees: data },
+        loading: false,
+        params: params,
+        page_limit: params.search === ''
+          ? Math.ceil(count / 10) : Math.ceil(req.data.data.length / 10),
+        url: url
+      }))
+
+      this.enable_inputs()
 
       console.groupEnd()
     } catch (err) {
@@ -159,9 +164,9 @@ export default class Guide extends Component {
   }
 
   handle_button = (type = 'next') => {
-    if (this.state.loading) {
-      return
-    }
+    // if (this.state.loading) {
+    //   return
+    // }
     const { page_limit, params } = this.state
 
     let key
@@ -189,9 +194,6 @@ export default class Guide extends Component {
    * @returns {undefined}
    */
   handle_params = (type, value) => {
-    if (this.state.loading) {
-      return
-    }
     console.info('Handling search parameter change:', { type, value })
 
     type = type.replace(/\s/g, '')
@@ -204,7 +206,10 @@ export default class Guide extends Component {
 
     this.setState(
       state => ({ ...state, params: params_copy }),
-      () => this.get_data()
+      () => {
+        this.disable_inputs()
+        this.get_data()
+      }
     )
   }
 
@@ -216,9 +221,37 @@ export default class Guide extends Component {
    */
   handle_url = url => {
     console.info('Handling url parameter change:', url)
+    let params_copy = Object.assign({}, this.state.params)
+    params_copy['page'] = '1'
     this.setState(
-      state => ({ ...state, url: url }),
-      () => this.get_data()
+      state => ({ ...state, params: params_copy, url: url }),
+      () => {
+        this.disable_inputs()
+        this.get_data()
+      }
     )
+  }
+
+  handle_key_press = e => {
+    if (e.keyCode === 37) {
+      this.handle_button('previous')
+    }
+    else if (e.keyCode === 39) {
+      this.handle_button('next')
+    }
+  }
+
+  disable_inputs = () => {
+    console.log("disabling inputs")
+    $("select").prop('disabled', true)
+    $("#btn-back").prop('disabled', true)
+    $("#btn-next").prop('disabled', true)
+  }
+  
+  enable_inputs = () => {
+    console.log("enabling inputs")
+    $("select").prop('disabled', false)
+    $("#btn-back").prop('disabled', false)
+    $("#btn-next").prop('disabled', false)
   }
 }

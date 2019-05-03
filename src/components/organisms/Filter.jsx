@@ -32,8 +32,8 @@ export default class Filter extends Component {
   async componentDidMount() {
     console.info('Filter mounted.')
 
-    $(window).resize(() => this.handle_window_scroll())
-    $(window).scroll(() => this.handle_window_scroll())
+    // $(window).resize(() => this.handle_window_scroll())
+    // $(window).scroll(() => this.handle_window_scroll())
 
     try {
       console.group('Getting Salary Guide years...')
@@ -69,8 +69,8 @@ export default class Filter extends Component {
    */
   componentWillUnmount() {
     // Remove scroll window listener
-    $(window).off('resize')
-    $(window).off('scroll')
+    // $(window).off('resize')
+    // $(window).off('scroll')
   }
 
   /**

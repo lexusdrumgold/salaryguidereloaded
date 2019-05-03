@@ -8,6 +8,8 @@ import logo from '../../assets/dbk.png'
 // Components
 import { Link } from '../atoms'
 import { HeaderNavigation } from '../molecules'
+import Filter from './Filter.jsx'
+
 
 /**
  * @file Preact component representing the header.
