@@ -23,6 +23,7 @@
     "preact": "10.0.0-alpha.3",
     "preact-cli-plugin-env-vars": "^1.2.1",
     "preact-router": "3.0.0",
+    "react-ga": "^2.5.7",
     "serve": "^11.0.0"
   },
   "devDependencies": {
