@@ -50,7 +50,7 @@ export default class Header extends Component {
    */
   render(props, state) {
     return (
-      <header class={(`ado-header ${props.class ? props.class : ''}`).trim()}>
+      <header class={(`ado-header ${props.class ? props.class : ''}`).trim()} >
         <div className='ada-container'>
           <Link id='logo' onClick={e => this.handle_link('body', e)}>
             <img src={logo} alt='DBK Logo' />

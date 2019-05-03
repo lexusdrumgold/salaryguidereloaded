@@ -150,8 +150,7 @@ export default class Guide extends Component {
         data: { count, employees: data },
         loading: false,
         params: params,
-        page_limit: params.search === ''
-          ? Math.ceil(count / 10) : Math.ceil(req.data.data.length / 10),
+        page_limit: Math.ceil(count / 10),
         url: url
       }))
 
