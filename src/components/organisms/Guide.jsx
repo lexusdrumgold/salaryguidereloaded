@@ -245,6 +245,7 @@ export default class Guide extends Component {
     $("select").prop('disabled', true)
     $("#btn-back").prop('disabled', true)
     $("#btn-next").prop('disabled', true)
+    $("input").prop('disabled', true)
   }
   
   enable_inputs = () => {
@@ -252,5 +253,6 @@ export default class Guide extends Component {
     $("select").prop('disabled', false)
     $("#btn-back").prop('disabled', false)
     $("#btn-next").prop('disabled', false)
+    $("input").prop('disabled', false)
   }
 }

@@ -1,5 +1,6 @@
 // Packages
 import { h, Component, Fragment } from 'preact'
+import ReactGA from 'react-ga'
 
 // Components
 import { Guide, Header, Hero, Footer } from './organisms'
@@ -27,6 +28,8 @@ export default class App extends Component {
    */
   componentDidMount() {
     console.info('Application mounted.')
+    ReactGA.initialize('UA-34401991-10')
+    ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
   /**

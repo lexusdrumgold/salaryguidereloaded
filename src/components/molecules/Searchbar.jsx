@@ -24,11 +24,26 @@ export default class Searchbar extends Component {
    * @param {object} state - Component state
    * @returns {HTMLDivElement} HTML div element representing a searchbar
    */
+  
+  state = { timeout: 0 }
+
+  search = (e) => {
+    if (this.state.timeout){
+      clearTimeout(this.state.timeout)
+    }
+
+    this.setState( {
+      timeout: setTimeout(() => {
+        this.props.onChange(e)
+      }, 500)
+    })
+  }
+
   render(props, state) {
     let style = (`adm-searchbar ${props.class ? props.class : ''}`).trim()
 
     const input_props = {
-      onChange: props.onChange,
+      onChange: this.search,
       // onInput: props.onChange,
       placeholder: 'Search the salary guide database'
     }
