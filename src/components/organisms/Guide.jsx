@@ -98,6 +98,7 @@ export default class Guide extends Component {
               current_page={state.params.page}
               page_limit={state.page_limit}
               handle_button={this.handle_button}
+              handle_search={this.handle_search}
               count={state.data.count}
             />
           </div>
@@ -231,12 +232,20 @@ export default class Guide extends Component {
     )
   }
 
+  handle_search = () => {
+    let term = $("#search-box").val().trim()
+    this.handle_params("search", term)
+  }
+
   handle_key_press = e => {
     if (e.keyCode === 37) {
       this.handle_button('previous')
     }
     else if (e.keyCode === 39) {
       this.handle_button('next')
+    }
+    else if (e.keyCode == 13) {
+      this.handle_search()
     }
   }
 

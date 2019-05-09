@@ -1,5 +1,6 @@
 // Packages
 import { h, Component } from 'preact'
+import $ from 'jquery'
 
 // Components
 import { Input } from '../atoms'
@@ -24,34 +25,21 @@ export default class Searchbar extends Component {
    * @param {object} state - Component state
    * @returns {HTMLDivElement} HTML div element representing a searchbar
    */
-  
-  state = { timeout: 0 }
-
-  search = (e) => {
-    if (this.state.timeout){
-      clearTimeout(this.state.timeout)
-    }
-
-    this.setState( {
-      timeout: setTimeout(() => {
-        this.props.onChange(e)
-      }, 500)
-    })
-  }
 
   render(props, state) {
     let style = (`adm-searchbar ${props.class ? props.class : ''}`).trim()
 
     const input_props = {
-      onChange: this.search,
+      // onChange: this.search,
       // onInput: props.onChange,
-      placeholder: 'Search the salary guide database'
+      placeholder: 'Search the salary guide database',
+      id: 'search-box'
     }
 
     return (
       <div class={style}>
         <div class='ada-container'>
-          <i class='fas fa-search ada-icon' /> <Input input={input_props} />
+          <i class='fas fa-search ada-icon' onClick={this.props.searchFunc} /> <Input input={input_props} />
         </div>
       </div>
     )

@@ -83,13 +83,13 @@ export default class Filter extends Component {
   render(props, state) {
     const style = (`ado-filter ${props.class ? props.class : ''}`).trim()
     const {
-      count, current_page, handle_button, handle_params, handle_url, page_limit
+      count, current_page, handle_button, handle_params, handle_url, handle_search, page_limit
     } = props
 
     return (
       <div class={style}>
         <div class='ada-container'>
-          <Searchbar onChange={e => handle_params('search', e.target.value)} />
+          <Searchbar searchFunc={handle_search} />
           <Legend legend='Filter' />
           <Fieldset>
             {
