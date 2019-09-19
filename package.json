@@ -6,7 +6,7 @@
   "scripts": {
     "preinstall": "rm -rf node_modules",
     "dev": "rm -rf ./build && NODE_ENV=development && preact watch --template ./src/public/index.html -p 3000",
-    "test": "NODE_ENV=test && jest",
+    "test": "jest",
     "build": "rm -rf ./build && NODE_ENV=production && preact build --clean -p --no-prerender --template ./src/public/index.html",
     "now-build": "npm run build",
     "stage": "clear && npm test && npm run build",
