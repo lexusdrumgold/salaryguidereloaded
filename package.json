@@ -93,5 +93,8 @@
   },
   "eslintIgnore": [
     "build/*"
-  ]
+  ],
+  "directories": {
+    "test": "tests"
+  }
 }
