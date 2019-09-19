@@ -4,6 +4,4 @@ node_js:
 install:
   - "npm config set package-lock false"
   - "npm install" 
-cache:
-  directories:
-    - "node_modules"
+
