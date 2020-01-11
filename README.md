@@ -16,8 +16,8 @@ salary data without navigating to a different site.
 
 [Getting Started](#getting-started)  
 [Usage](#usage)  
-[Contributing](#contributing)  
-[Deployment](#deployment)  
+[Contributing](CONTRIBUTING.md)  
+[Deployment](DEPLOYMENT.md)  
 [Built With](#built-with)
 
 ## Getting Started
@@ -43,18 +43,6 @@ this information are your own — just as they should be.
 ## Usage
 
 **Attention: This section is under construction.**
-
-## Contributing
-
-If you're a current member of The Diamondback Lab, or an outside contributor,
-you please view our [Guide to Contributing](CONTRIBUTING.md).
-
-## Deployment
-
-**Attention: This section is under construction.**
-
-If you're a current member of The Diamondback Lab, or would like an overview of
-our deployment procedure, please view our [Deployment Guide](DEPLOYMENT.md).
 
 ## Built With
 
