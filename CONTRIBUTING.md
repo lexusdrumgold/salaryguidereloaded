@@ -25,7 +25,7 @@ local machine.
 
 Follow the steps below to get your development enviroment set up.
 
-1. Open the terminal and and run the following: `git clone https://gitlab.com/The-Diamondback-Lab/salaryguidereloaded.git`.
+1. Open the terminal and and run the following: `git clone https://gitlab.com/lexusdrumgold/salaryguidereloaded.git`.
 
 2. Run `npm install` to install the project dependencies.
 
